@@ -10,5 +10,6 @@ export const Globalstyle = createGlobalStyle`
     }
     body{
         font-family: "Noto Sans KR", sans-serif;
+        letter-spacing: -1px;
     }
 `;

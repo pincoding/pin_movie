@@ -4,10 +4,19 @@ import styled from "styled-components";
 import { SyncLoader } from "react-spinners";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
+const Section = styled.div`
+  .swiper-button-prev {
+    color: #00a7f6;
+  }
+  .swiper-button-next {
+    color: #00a7f6;
+  }
+`;
 
 const Container = styled.div`
   position: relative;
@@ -34,28 +43,30 @@ const ConWrap = styled.div`
   );
 `;
 const Con = styled.div`
+  width: 280px;
   position: absolute;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
-  left: 30px;
+  left: 60px;
   color: white;
 
   h4 {
     width: 100%;
-    height: 50px;
+    height: 40px;
     background-color: antiquewhite;
-    font-size: 18px;
+    font-size: 16px;
     background-color: #00a7f6;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    cursor: pointer;
   }
 `;
 const Box = styled.div`
   margin-bottom: 30px;
   h1 {
-    font-size: 38px;
+    font-size: 34px;
     margin-bottom: 16px;
   }
   h3 {
@@ -83,18 +94,18 @@ export const Home = () => {
           <SyncLoader size={"16px"} color={"#00A7F6"} />
         </LdContainer>
       ) : (
-        <>
+        <Section>
           {upData && (
             <>
               <Swiper
                 spaceBetween={0}
                 slidesPerView={1}
-                modules={[Navigation, Pagination, A11y]}
+                modules={[Navigation]}
                 navigation
                 pagination={{ clickable: true }}
                 scrollbar={{ draggable: true }}
-                onSwiper={(swiper) => console.log(swiper)}
-                onSlideChange={() => console.log("slide change")}
+                // onSwiper={(swiper) => console.log(swiper)}
+                // onSlideChange={() => console.log("slide change")}
               >
                 {upData.map((data) => (
                   <SwiperSlide key={data?.id}>
@@ -114,7 +125,7 @@ export const Home = () => {
               </Swiper>
             </>
           )}
-        </>
+        </Section>
       )}
     </div>
   );
