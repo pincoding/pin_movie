@@ -75,23 +75,64 @@ const Box = styled.div`
 `;
 
 export const Home = () => {
-  const [upData, upDataset] = useState();
+  const [upData, setupData] = useState();
   const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       const { results } = await upcoming();
-      console.log(results);
-      upDataset(results);
+      // console.log(results);
+      setupData(results);
+
       setLoading(false);
     })();
   }, []);
+
+  const array = [
+    {
+      url: "sssssssssss",
+    },
+    {
+      url: "aaaaaaaa",
+    },
+    {
+      url: "bbbbbbbbbbbbbb",
+    },
+    {
+      url: "Vvvvvvvv",
+    },
+  ];
+
+  // map 함수 사용
+  const newArray = array.map(() => {
+    // 랜덤 함수 호출
+    return Math.floor(Math.random() * (1 - 0)) + 0;
+  });
+  console.log(newArray);
+
+  // const array = upData && upData[Math.floor(Math.random() * upData.length)];
+
+  // console.log(array);
+  // const newArray = () => {
+  //   return Math.floor(Math.random() * array);
+  // };
+  // console.log(newArray());
+
+  // const randomImg = () =>
+  //   upData && upData[Math.floor(Math.random() * upData.length)].backdrop_path;
+
+  // console.log(randomImg());
+  // const randomImg = Math.floor(Math.random() * upData.length);
+  // console.log(upData[randomImg]);
+  // console.log(
+  //   upData && upData[Math.floor(Math.random() * upData.length)].backdrop_path
+  // );
 
   return (
     <div>
       {Loading ? (
         <LdContainer>
-          <SyncLoader size={"16px"} color={"#00A7F6"} />
+          <SyncLoader size={"10px"} color={"#00A7F6"} />
         </LdContainer>
       ) : (
         <Section>
@@ -104,12 +145,15 @@ export const Home = () => {
                 navigation
                 pagination={{ clickable: true }}
                 scrollbar={{ draggable: true }}
-                // onSwiper={(swiper) => console.log(swiper)}
-                // onSlideChange={() => console.log("slide change")}
               >
                 {upData.map((data) => (
                   <SwiperSlide key={data?.id}>
+                    {/* {console.log(data?.id)} */}
                     <Container $Bg={data?.backdrop_path}>
+                      {/* {console.log(
+                        Math.floor(Math.random() * data?.backdrop_path.length)
+                      )} */}
+                      {/* {console.log(Math.random() * data?.backdrop_path.length)} */}
                       <ConWrap>
                         <Con>
                           <Box>
@@ -130,3 +174,4 @@ export const Home = () => {
     </div>
   );
 };
+//

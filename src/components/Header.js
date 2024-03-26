@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const SHeader = styled.div`
@@ -34,7 +35,10 @@ export const Header = () => {
   return (
     <SHeader>
       <Logo>
-        <h1>PinMoive</h1>
+        <Link to={"/"}>
+          {" "}
+          <h1>PinMovie</h1>
+        </Link>
       </Logo>
       <MenuWrap>
         <p>홈</p>
