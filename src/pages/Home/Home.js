@@ -75,8 +75,9 @@ const Box = styled.div`
 `;
 
 export const Home = () => {
-  const [upData, setupData] = useState();
+  const [upData, setupData] = useState([]);
   const [Loading, setLoading] = useState(true);
+  const [randomIndexes, setRandomIndexes] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -87,28 +88,14 @@ export const Home = () => {
       setLoading(false);
     })();
   }, []);
-
-  const array = [
-    {
-      url: "sssssssssss",
-    },
-    {
-      url: "aaaaaaaa",
-    },
-    {
-      url: "bbbbbbbbbbbbbb",
-    },
-    {
-      url: "Vvvvvvvv",
-    },
-  ];
-
-  // map 함수 사용
-  const newArray = array.map(() => {
-    // 랜덤 함수 호출
-    return Math.floor(Math.random() * (1 - 0)) + 0;
-  });
-  console.log(newArray);
+  useEffect(() => {
+    if (upData.length > 0) {
+      const indexes = Array.from({ length: upData.length }, () =>
+        Math.floor(Math.random() * upData.length)
+      );
+      setRandomIndexes(indexes);
+    }
+  }, [upData]);
 
   // const array = upData && upData[Math.floor(Math.random() * upData.length)];
 
@@ -136,42 +123,34 @@ export const Home = () => {
         </LdContainer>
       ) : (
         <Section>
-          {upData && (
-            <>
-              <Swiper
-                spaceBetween={0}
-                slidesPerView={1}
-                modules={[Navigation]}
-                navigation
-                pagination={{ clickable: true }}
-                scrollbar={{ draggable: true }}
-              >
-                {upData.map((data) => (
-                  <SwiperSlide key={data?.id}>
-                    {/* {console.log(data?.id)} */}
-                    <Container $Bg={data?.backdrop_path}>
-                      {/* {console.log(
-                        Math.floor(Math.random() * data?.backdrop_path.length)
-                      )} */}
-                      {/* {console.log(Math.random() * data?.backdrop_path.length)} */}
-                      <ConWrap>
-                        <Con>
-                          <Box>
-                            <h1>{data?.title}</h1>
-                            <h3>액션,판타지</h3>
-                          </Box>
-                          <h4>자세히보기</h4>
-                        </Con>
-                      </ConWrap>
-                    </Container>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </>
+          {upData.length > 0 && (
+            <Swiper
+              spaceBetween={0}
+              slidesPerView={1}
+              modules={[Navigation]}
+              navigation
+              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
+            >
+              {upData.map((data, index) => (
+                <SwiperSlide key={data.id}>
+                  <Container $Bg={upData[randomIndexes[index]]?.backdrop_path}>
+                    <ConWrap>
+                      <Con>
+                        <Box>
+                          <h1>{upData[randomIndexes[index]]?.title}</h1>
+                          <h3>액션,판타지</h3>
+                        </Box>
+                        <h4>자세히보기</h4>
+                      </Con>
+                    </ConWrap>
+                  </Container>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           )}
         </Section>
       )}
     </div>
   );
 };
-//
