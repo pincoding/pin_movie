@@ -15,3 +15,6 @@ const options = {
 
 export const upcoming = () =>
   fetch(url("movie/upcoming"), options).then((res) => res.json());
+
+export const popular = () =>
+  fetch(url("movie/popular"), options).then((res) => res.json());

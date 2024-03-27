@@ -1,29 +1,16 @@
 import { useEffect, useState } from "react";
-import { upcoming } from "../../api";
-import styled from "styled-components";
+import { popular, upcoming } from "../../api";
 import { SyncLoader } from "react-spinners";
+import styled from "styled-components";
 
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "swiper/css/pagination";
+import { MainHome } from "./MainHome";
+import { imgURL } from "../../imgurl";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
-const Section = styled.div`
-  .swiper-button-prev {
-    color: #00a7f6;
-  }
-  .swiper-button-next {
-    color: #00a7f6;
-  }
-`;
-
-const Container = styled.div`
-  position: relative;
-  height: 70vh;
-  background: url(https://image.tmdb.org/t/p/original/${(props) => props.$Bg})
-    no-repeat center/cover;
-`;
 const LdContainer = styled.div`
   width: 100%;
   height: 100vh;
@@ -32,71 +19,46 @@ const LdContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const ConWrap = styled.div`
-  height: 100%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(0, 0, 0, 0.3) 40%,
-    rgba(0, 0, 0, 1) 100%
-  );
+
+const Section = styled.div`
+  padding-left: 30px;
+  padding-top: 100px;
+  background-color: black;
+  h1 {
+    padding: 40px 0;
+    color: #fff;
+    font-size: 34px;
+    font-weight: 900;
+  }
 `;
 const Con = styled.div`
-  width: 280px;
-  position: absolute;
-  top: 55%;
-  transform: translateY(-50%);
-  left: 60px;
-  color: white;
-
-  h4 {
-    width: 100%;
-    height: 40px;
-    background-color: antiquewhite;
-    font-size: 16px;
-    background-color: #00a7f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    cursor: pointer;
+  width: 230px;
+  height: 400px;
+  border-radius: 20px;
+  background-color: lightblue;
+  img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
   }
-`;
-const Box = styled.div`
-  margin-bottom: 30px;
-  h1 {
-    font-size: 34px;
-    margin-bottom: 16px;
-  }
-  h3 {
-    font-size: 18px;
-  }
-`;
-const Containers = styled.div`
-  width: 240px;
-  height: 100px;
-  background: url(https://image.tmdb.org/t/p/original/${(props) => props.$Bg})
-    no-repeat center/cover;
-  position: absolute;
-  top: 80vh;
-  left: 0;
 `;
 
 export const Home = () => {
   const [upData, setupData] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [randomIndexes, setRandomIndexes] = useState([]);
+  const [popData, setPopData] = useState();
 
   useEffect(() => {
     (async () => {
-      const { results } = await upcoming();
-      // console.log(results);
-      setupData(results);
-
+      const { results: upResults } = await upcoming();
+      const { results: popResults } = await popular();
+      setupData(upResults);
+      setPopData(popResults);
       setLoading(false);
     })();
   }, []);
+  console.log(popData);
   useEffect(() => {
     if (upData.length > 0) {
       const indexes = Array.from({ length: upData.length }, () =>
@@ -106,24 +68,6 @@ export const Home = () => {
     }
   }, [upData]);
 
-  // const array = upData && upData[Math.floor(Math.random() * upData.length)];
-
-  // console.log(array);
-  // const newArray = () => {
-  //   return Math.floor(Math.random() * array);
-  // };
-  // console.log(newArray());
-
-  // const randomImg = () =>
-  //   upData && upData[Math.floor(Math.random() * upData.length)].backdrop_path;
-
-  // console.log(randomImg());
-  // const randomImg = Math.floor(Math.random() * upData.length);
-  // console.log(upData[randomImg]);
-  // console.log(
-  //   upData && upData[Math.floor(Math.random() * upData.length)].backdrop_path
-  // );
-
   return (
     <div>
       {Loading ? (
@@ -131,43 +75,39 @@ export const Home = () => {
           <SyncLoader size={"10px"} color={"#00A7F6"} />
         </LdContainer>
       ) : (
-        <Section>
-          {upData.length > 0 && (
-            <Swiper
-              spaceBetween={0}
-              slidesPerView={1}
-              modules={[Navigation]}
-              navigation
-              pagination={{ clickable: true }}
-              scrollbar={{ draggable: true }}
-            >
-              {upData.map((data, index) => (
-                <SwiperSlide key={data.id}>
-                  <Container $Bg={upData[randomIndexes[index]]?.backdrop_path}>
-                    {/* ------------------------------------------------------- */}
-                    <Swiper spaceBetween={10} slidesPerView={4}>
-                      <SwiperSlide>
-                        <Containers
-                          $Bg={upData[randomIndexes[index]]?.backdrop_path}
-                        />
-                      </SwiperSlide>
-                    </Swiper>
-                    {/* ------------------------------------------------------- */}
-                    <ConWrap>
-                      <Con>
-                        <Box>
-                          <h1>{upData[randomIndexes[index]]?.title}</h1>
-                          <h3>액션,판타지</h3>
-                        </Box>
-                        <h4>자세히보기</h4>
-                      </Con>
-                    </ConWrap>
-                  </Container>
+        <>
+          <MainHome mainData={upData} mainRandom={randomIndexes}></MainHome>
+          <Section>
+            <h1>인기영화</h1>
+            <Swiper spaceBetween={10} slidesPerView={7.3}>
+              {popData.map((popDatas) => (
+                <SwiperSlide>
+                  <Con>
+                    <img
+                      src={`${imgURL.imgSize500}${popDatas?.poster_path}`}
+                      alt="인기영화"
+                    ></img>
+                  </Con>
                 </SwiperSlide>
               ))}
             </Swiper>
-          )}
-        </Section>
+          </Section>
+          <Section>
+            <h1>인기영화</h1>
+            <Swiper spaceBetween={10} slidesPerView={7.3}>
+              {popData.map((popDatas) => (
+                <SwiperSlide>
+                  <Con>
+                    <img
+                      src={`${imgURL.imgSize500}${popDatas?.poster_path}`}
+                      alt="인기영화"
+                    ></img>
+                  </Con>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Section>
+        </>
       )}
     </div>
   );

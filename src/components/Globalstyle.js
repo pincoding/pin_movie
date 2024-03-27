@@ -17,4 +17,8 @@ export const Globalstyle = createGlobalStyle`
         text-decoration: none;
         color: #fff;
     }
+    img{
+        width: 100%;
+        display: block;
+    }
 `;
