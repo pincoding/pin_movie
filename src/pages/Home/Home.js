@@ -73,6 +73,15 @@ const Box = styled.div`
     font-size: 18px;
   }
 `;
+const Containers = styled.div`
+  width: 240px;
+  height: 100px;
+  background: url(https://image.tmdb.org/t/p/original/${(props) => props.$Bg})
+    no-repeat center/cover;
+  position: absolute;
+  top: 80vh;
+  left: 0;
+`;
 
 export const Home = () => {
   const [upData, setupData] = useState([]);
@@ -135,6 +144,15 @@ export const Home = () => {
               {upData.map((data, index) => (
                 <SwiperSlide key={data.id}>
                   <Container $Bg={upData[randomIndexes[index]]?.backdrop_path}>
+                    {/* ------------------------------------------------------- */}
+                    <Swiper spaceBetween={10} slidesPerView={4}>
+                      <SwiperSlide>
+                        <Containers
+                          $Bg={upData[randomIndexes[index]]?.backdrop_path}
+                        />
+                      </SwiperSlide>
+                    </Swiper>
+                    {/* ------------------------------------------------------- */}
                     <ConWrap>
                       <Con>
                         <Box>
