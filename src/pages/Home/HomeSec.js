@@ -9,8 +9,8 @@ const Section = styled.div`
   h1 {
     padding: 40px 0;
     color: #fff;
-    font-size: 34px;
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 500;
   }
 `;
 const Con = styled.div`
