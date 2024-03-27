@@ -55,7 +55,8 @@ export const HomeSec02 = ({ secData, text }) => {
                     alt={`text`}
                   ></img>
                   <Box>
-                    <Vote>평점 {Math.round(data?.vote_average)}점</Vote>
+                    <Vote>자세히보기</Vote>
+                    {/* <Vote>평점 {Math.round(data?.vote_average)}점</Vote> */}
                   </Box>
                 </Con>
               </SwiperSlide>

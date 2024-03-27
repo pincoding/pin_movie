@@ -36,13 +36,16 @@ export const Header = () => {
     <SHeader>
       <Logo>
         <Link to={"/"}>
-          {" "}
           <h1>PinMovie</h1>
         </Link>
       </Logo>
       <MenuWrap>
-        <p>홈</p>
-        <p>검색창</p>
+        <Link to={"/"}>
+          <p>홈</p>
+        </Link>
+        <Link to={"/search"}>
+          <p>검색</p>
+        </Link>
       </MenuWrap>
     </SHeader>
   );

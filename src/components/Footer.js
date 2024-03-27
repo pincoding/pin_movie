@@ -1,0 +1,97 @@
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const SFooter = styled.div`
+  height: 200px;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #1c1c1c;
+  margin-top: 100px;
+`;
+const Con = styled.div`
+  display: flex;
+  padding-left: 80px;
+`;
+const TextBox = styled.div`
+  display: flex;
+  padding: 20px 100px 0 30px;
+  color: white;
+  flex-direction: column;
+  line-height: 30px;
+  h1 {
+    font-size: 28px;
+  }
+  a {
+    text-decoration: dotted;
+  }
+`;
+const ConIn = styled.div`
+  width: 140px;
+  display: flex;
+  /* background-color: lightcoral; */
+  margin-right: 90px;
+  padding-top: 20px;
+  justify-content: space-between;
+`;
+const ImgBox = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export const Footer = () => {
+  return (
+    <SFooter>
+      <Con>
+        <TextBox>
+          <Link to={"/"}>
+            <h1>PinMovie</h1>
+          </Link>
+        </TextBox>
+        <TextBox>
+          <p>Name : Pincoding</p>
+          <a href="https://github.com/pincoding">
+            pincoding GitHub : https://github.com/pincoding
+          </a>
+          <p>Email : dydtjswkdrns@naver.com</p>
+        </TextBox>
+      </Con>
+
+      <ConIn>
+        <ImgBox>
+          <img
+            src="https://blog.kakaocdn.net/dn/HDY7T/btrY2our4Rw/Fw6bz0QroBUp1YxglkkwEK/img.webp"
+            alt="구글"
+          ></img>
+        </ImgBox>
+        <ImgBox>
+          <img
+            src="https://i.namu.wiki/i/p_1IEyQ8rYenO9YgAFp_LHIAW46kn6DXT0VKmZ_jKNijvYth9DieYZuJX_E_H_4GkCER_sVKhMqSyQYoW94JKA.svg"
+            alt="네이버"
+          ></img>
+        </ImgBox>
+        <ImgBox>
+          <img
+            src="https://cdn.pixabay.com/photo/2018/11/13/22/01/instagram-3814080_1280.png"
+            alt="인스타"
+          ></img>
+        </ImgBox>
+        <ImgBox>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/124/124010.png"
+            alt="페이스북"
+          ></img>
+        </ImgBox>
+      </ConIn>
+    </SFooter>
+  );
+};
