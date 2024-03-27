@@ -40,10 +40,11 @@ const Con = styled.div`
   color: white;
 
   h4 {
-    width: 100%;
+    width: 85%;
     height: 40px;
     background-color: antiquewhite;
     font-size: 16px;
+    font-weight: 700;
     background-color: #00a7f6;
     display: flex;
     justify-content: center;
@@ -55,21 +56,13 @@ const Con = styled.div`
 const Box = styled.div`
   margin-bottom: 30px;
   h1 {
+    font-weight: 900;
     font-size: 34px;
     margin-bottom: 16px;
   }
   h3 {
     font-size: 18px;
   }
-`;
-const Containers = styled.div`
-  width: 240px;
-  height: 100px;
-  background: url(https://image.tmdb.org/t/p/original/${(props) => props.$Bg})
-    no-repeat center/cover;
-  position: absolute;
-  top: 80vh;
-  left: 0;
 `;
 
 export const MainHome = ({ mainData, mainRandom }) => {

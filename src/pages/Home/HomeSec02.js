@@ -14,18 +14,33 @@ const Section = styled.div`
   }
 `;
 const Con = styled.div`
-  height: 400px;
+  height: 220px;
   border-radius: 20px;
   background-color: black;
-
+  position: relative;
+  overflow: hidden;
   img {
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
   }
 `;
+const Box = styled.div`
+  width: 100%;
+  height: 55px;
+  background-color: #1c1c1c;
+  position: absolute;
+  bottom: 0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-export const HomeSec = ({ secData, text }) => {
+  /* top: -50px; */
+`;
+const Vote = styled.div``;
+
+export const HomeSec02 = ({ secData, text }) => {
   return (
     <>
       {secData && (
@@ -39,6 +54,9 @@ export const HomeSec = ({ secData, text }) => {
                     src={`${imgURL.imgSize500}${data?.poster_path}`}
                     alt={`text`}
                   ></img>
+                  <Box>
+                    <Vote>평점 {Math.round(data?.vote_average)}점</Vote>
+                  </Box>
                 </Con>
               </SwiperSlide>
             ))}
