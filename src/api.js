@@ -25,6 +25,11 @@ export const topRated = () =>
 export const nowPlaying = () =>
   fetch(url("movie/now_playing"), options).then((res) => res.json());
 
+export const details = (id) => {
+  const detailUrl = back_part + `movie/${id}?language=ko-kr`;
+  return fetch(detailUrl, options).then((res) => res.json());
+};
+
 // export const ratings = (id) => {
 //   const ratingUrl = back_part + `movie/${id}/rating?language=ko-kr`;
 //   return fetch(ratingUrl, options).then((res) => res.json());

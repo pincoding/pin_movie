@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { imgURL } from "../../imgurl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { Link } from "react-router-dom";
 
 const Section = styled.div`
   padding: 50px 0px 0px 30px;
@@ -49,16 +50,18 @@ export const HomeSec02 = ({ secData, text }) => {
           <Swiper spaceBetween={17} slidesPerView={6.2}>
             {secData.map((data) => (
               <SwiperSlide key={data.id}>
-                <Con>
-                  <img
-                    src={`${imgURL.imgSize500}${data?.poster_path}`}
-                    alt={`text`}
-                  ></img>
-                  <Box>
-                    <Vote>자세히보기</Vote>
-                    {/* <Vote>평점 {Math.round(data?.vote_average)}점</Vote> */}
-                  </Box>
-                </Con>
+                <Link to={`/detail/${data.id}`}>
+                  <Con>
+                    <img
+                      src={`${imgURL.imgSize500}${data?.poster_path}`}
+                      alt={`text`}
+                    />
+                    <Box>
+                      <Vote>자세히보기</Vote>
+                      {/* <Vote>평점 {Math.round(data?.vote_average)}점</Vote> */}
+                    </Box>
+                  </Con>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
