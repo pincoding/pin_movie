@@ -70,6 +70,7 @@ export const Search = () => {
         ></input>
       </SearchHeader>
 
+          
       <Section>
         {resData &&
           resData.map((data) => (
