@@ -90,7 +90,6 @@ export const Detail = () => {
         <Loadings />
       ) : (
         <>
-          {" "}
           <Warp>
             <DetSec01>
               <img
