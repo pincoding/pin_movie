@@ -34,13 +34,3 @@ export const searchMoive = (keyword) => {
   const searchUrl = back_part + `search/movie?query=${keyword}&language=ko-kr`;
   return fetch(searchUrl, options).then((res) => res.json());
 };
-
-// export const ratings = (id) => {
-//   const ratingUrl = back_part + `movie/${id}/rating?language=ko-kr`;
-//   return fetch(ratingUrl, options).then((res) => res.json());
-// };
-
-// export const moiveDetail = (id) => {
-//   const detailUrl = baseUrl + `movie/${id}?language=ko-kr`;
-//   return fetch(detailUrl, options).then((res) => res.json());
-// };
