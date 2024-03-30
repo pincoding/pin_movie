@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { SyncLoader } from "react-spinners";
 const LdContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  top: 0;
+  left: 0;
   position: fixed;
   display: flex;
   justify-content: center;
