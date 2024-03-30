@@ -1,18 +1,11 @@
 import styled from "styled-components";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+// import { Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 const Section = styled.div`
-  .swiper-button-prev {
-    color: #00a7f6;
-  }
-  .swiper-button-next {
-    color: #00a7f6;
-  }
+  width: 100%;
 `;
 
 const Container = styled.div`
@@ -52,32 +45,95 @@ const Con = styled.div`
     border-radius: 10px;
     cursor: pointer;
   }
+  @media screen and (max-width: 1024px) {
+    h4 {
+      width: 80%;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    h4 {
+      width: 75%;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    width: 270px;
+    top: 75%;
+    left: 7%;
+    h4 {
+      width: 70%;
+      font-size: 13px;
+      font-weight: 700;
+    }
+  }
 `;
 const Box = styled.div`
   margin-bottom: 30px;
   h1 {
     font-weight: 900;
-    font-size: 34px;
+    font-size: 28px;
     margin-bottom: 16px;
   }
   h3 {
     font-size: 18px;
   }
+  @media screen and (max-width: 1024px) {
+    h1 {
+      font-weight: 900;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-size: 16px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-weight: 900;
+      font-size: 24px;
+    }
+    h3 {
+      font-size: 15px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    h1 {
+      font-weight: 900;
+      font-size: 20px;
+    }
+    h3 {
+      font-size: 14px;
+    }
+  }
 `;
 
 export const MainHome = ({ mainData, mainRandom }) => {
+  const params = {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    breakpoints: {
+      1024: {
+        slidesPerView: 1,
+        spaceBetween: 0,
+      },
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 0,
+      },
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 0,
+      },
+    },
+  };
   return (
     <>
       <Section>
         {mainData.length > 0 && (
-          <Swiper
-            spaceBetween={0}
-            slidesPerView={1}
-            modules={[Navigation]}
-            navigation
-            pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-          >
+          <Swiper {...params}>
             {mainData.map((data, index) => (
               <SwiperSlide key={data.id}>
                 <Container $Bg={mainData[mainRandom[index]]?.backdrop_path}>

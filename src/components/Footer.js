@@ -12,6 +12,17 @@ const SFooter = styled.div`
 const Con = styled.div`
   display: flex;
   padding-left: 80px;
+  @media screen and (max-width: 1024px) {
+    padding-left: 80px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-left: 13px;
+  }
+  @media screen and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0px;
+  }
 `;
 const TextBox = styled.div`
   display: flex;
@@ -25,14 +36,41 @@ const TextBox = styled.div`
   a {
     text-decoration: dotted;
   }
+  @media screen and (max-width: 1024px) {
+    padding: 20px 100px 0 30px;
+    h1 {
+      font-size: 28px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    padding: 20px 0px 0 30px;
+    h1 {
+      font-size: 28px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    line-height: 23px;
+    padding: 20px 0px 0 30px;
+    h1 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 12px;
+    }
+    a {
+      font-size: 12px;
+    }
+  }
 `;
 const ConIn = styled.div`
-  width: 140px;
+  width: 200px;
   display: flex;
-  /* background-color: lightcoral; */
   margin-right: 90px;
   padding-top: 20px;
   justify-content: space-between;
+  @media screen and (max-width: 480px) {
+    margin-right: 30px;
+  }
 `;
 const ImgBox = styled.div`
   width: 30px;

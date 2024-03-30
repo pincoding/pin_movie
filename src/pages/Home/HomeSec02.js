@@ -13,6 +13,19 @@ const Section = styled.div`
     font-size: 30px;
     font-weight: 500;
   }
+  @media screen and (max-width: 1024px) {
+  }
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    padding: 16px 0px 0px 20px;
+    h1 {
+      padding: 16px 0;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
 `;
 const Con = styled.div`
   height: 220px;
@@ -25,6 +38,13 @@ const Con = styled.div`
     object-fit: cover;
     border-radius: 20px;
   }
+  @media screen and (max-width: 1024px) {
+  }
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    height: 160px;
+  }
 `;
 const Box = styled.div`
   width: 100%;
@@ -36,18 +56,42 @@ const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* top: -50px; */
+  @media screen and (max-width: 1024px) {
+  }
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 12px;
+    height: 34px;
+  }
 `;
 const Vote = styled.div``;
 
 export const HomeSec02 = ({ secData, text }) => {
+  const params = {
+    slidesPerView: 6.2,
+    spaceBetween: 17,
+    breakpoints: {
+      1024: {
+        slidesPerView: 6.2,
+        spaceBetween: 17,
+      },
+      640: {
+        spaceBetween: 17,
+        slidesPerView: 4.2,
+      },
+      320: {
+        spaceBetween: 10,
+        slidesPerView: 2.2,
+      },
+    },
+  };
   return (
     <>
       {secData && (
         <Section>
           <h1>{text}</h1>
-          <Swiper spaceBetween={17} slidesPerView={6.2}>
+          <Swiper {...params}>
             {secData.map((data) => (
               <SwiperSlide key={data.id}>
                 <Link to={`/detail/${data.id}`}>
