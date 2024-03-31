@@ -41,6 +41,7 @@ const MenuWrap = styled.div`
   align-items: center;
   position: absolute;
   right: 60px;
+  user-select: none;
   p {
     font-size: 24px;
     margin-left: 30px;
