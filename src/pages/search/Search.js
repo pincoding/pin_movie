@@ -7,16 +7,16 @@ import { imgURL } from "../../imgurl";
 import { Loadings } from "../../components/Loading";
 
 const Wrap = styled.div`
-  padding: 150px;
+  padding: 0px 100px 0px 100px;
   p {
     color: #1f77ff;
   }
   h1 {
     font-size: 30px;
-    margin-top: 180px;
+    margin-top: 150px;
   }
   @media screen and (max-width: 1024px) {
-    padding: 150px;
+    /* padding: 150px; */
   }
   @media screen and (max-width: 768px) {
 
@@ -36,7 +36,7 @@ const Wrap = styled.div`
   }
 `;
 const SearchHeader = styled.form`
-  padding: 150px;
+  padding: 150px 0px 10px 0px;
   position: relative;
   input {
     all: unset;
@@ -45,7 +45,7 @@ const SearchHeader = styled.form`
     padding: 5px 5px;
   }
   @media screen and (max-width: 1024px) {
-    padding: 150px;
+
   }
   @media screen and (max-width: 768px) {
 

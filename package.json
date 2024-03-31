@@ -29,6 +29,7 @@
     "deploy": "gh-pages -d build"
   },
   "homepage" : "https://pincoding.github.io/pin_movie/",
+  
   "eslintConfig": {
     "extends": [
       "react-app",
