@@ -15,6 +15,25 @@ const Wrap = styled.div`
     font-size: 30px;
     margin-top: 180px;
   }
+  @media screen and (max-width: 1024px) {
+    padding: 150px;
+  }
+  @media screen and (max-width: 768px) {
+
+  }
+  @media screen and (max-width: 480px) {
+    padding: 100px 0px 0px 0px;
+    h1{
+      font-size: 20px;
+      margin-top: 50px;
+      margin-left: 20px;
+      padding-bottom: 20px;
+    }
+    p{
+      margin-top: 8px;
+      margin-left: 15px;
+    }
+  }
 `;
 const SearchHeader = styled.form`
   padding: 150px;
@@ -25,6 +44,15 @@ const SearchHeader = styled.form`
     border-bottom: 1px solid #666;
     padding: 5px 5px;
   }
+  @media screen and (max-width: 1024px) {
+    padding: 150px;
+  }
+  @media screen and (max-width: 768px) {
+
+  }
+  @media screen and (max-width: 480px) {
+    padding: 0px 30px 0px 10px;
+  }
 `;
 
 const Section = styled.div`
@@ -33,6 +61,19 @@ const Section = styled.div`
   grid-template-columns: repeat(5, 1fr);
   row-gap: 20px;
   column-gap: 20px;
+  @media screen and (max-width: 1024px) {
+    
+  }
+  @media screen and (max-width: 768px) {
+
+  }
+  @media screen and (max-width: 480px) {
+    width: 90%;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 10px;
+    column-gap: 10px;
+  }
 `;
 const BgImg = styled.div`
   height: 400px;
@@ -42,6 +83,19 @@ const BgImg = styled.div`
     object-fit: cover;
     border-radius: 20px;
   }
+  @media screen and (max-width: 1024px) {
+    
+  }
+  @media screen and (max-width: 768px) {
+
+  }
+  @media screen and (max-width: 480px) {
+    height: 160px;
+    img{
+      border-radius: 10px;
+    }
+  }
+
 `;
 
 export const Search = () => {
@@ -81,8 +135,8 @@ export const Search = () => {
           placeholder="내용을 입력해주세요."
         ></input>
       </SearchHeader>
-      {/* <p>{errors?.searchMode?.message}</p>
-      <h1>검색내용 : {keyword}</h1> */}
+      <p>{errors?.searchMode?.message}</p>
+      <h1>검색내용 : {keyword}</h1>
 
       <Section>
         {Loading ? (

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import { Navigation } from "swiper/modules";
 import "swiper/css";
+import { Link } from "react-router-dom";
 
 const Section = styled.div`
   width: 100%;
@@ -137,6 +138,7 @@ export const MainHome = ({ mainData, mainRandom }) => {
             {mainData.map((data, index) => (
               <SwiperSlide key={data.id}>
                 <Container $Bg={mainData[mainRandom[index]]?.backdrop_path}>
+                <Link to={`detail/${mainData[mainRandom[index]]?.id}`}>
                   <ConWrap>
                     <Con>
                       <Box>
@@ -146,6 +148,7 @@ export const MainHome = ({ mainData, mainRandom }) => {
                       <h4>자세히보기</h4>
                     </Con>
                   </ConWrap>
+                  </Link>
                 </Container>
               </SwiperSlide>
             ))}

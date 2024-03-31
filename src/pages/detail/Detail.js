@@ -20,6 +20,15 @@ const DetSec01 = styled.div`
     height: 100%;
     object-fit: cover;
   }
+  @media screen and (max-width: 1024px) {
+    width: 70%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 85%;
+  }
+  @media screen and (max-width: 480px) {
+    width: 90%;
+  }
 `;
 const DetSec02 = styled.div`
   width: 60%;
@@ -28,6 +37,16 @@ const DetSec02 = styled.div`
   margin-top: 20px;
   .conWarp01 {
     width: 80%;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 70%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 85%;
+  }
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    width: 90%;
   }
 `;
 const ConWrap = styled.div`
@@ -48,8 +67,22 @@ const ConWrap = styled.div`
   h2 {
     line-height: 30px;
   }
-  p {
+  h3 {
     line-height: 23px;
+  }
+  @media screen and (max-width: 480px) {
+    h1{
+      font-size : 16px;
+      padding: 3px 10px;
+    }
+    h2{
+      font-size: 15px;
+    }
+    h3{
+      width: 90vw;
+      display: block;
+      font-size: 15px;
+    }
   }
 `;
 const PlayWrap = styled.div`
@@ -64,6 +97,17 @@ const PlayWrap = styled.div`
     cursor: pointer;
     user-select: none;
   }
+  @media screen and (max-width: 1024px) {
+    
+  }
+  @media screen and (max-width: 768px) {
+
+  }
+  @media screen and (max-width: 480px) {
+   margin-top: 30px;
+
+  }
+  
 `;
 
 export const Detail = () => {
@@ -105,7 +149,7 @@ export const Detail = () => {
                 <h2>제목 : {data?.title}</h2>
                 <h2>평점 : {Math.round(data?.vote_average)}점</h2>
                 <h2>상영시간 : {data?.runtime}분</h2>
-                <p>{data?.overview}</p>
+                <h3>{data?.overview}</h3>
               </ConWrap>
               <PlayWrap>
                 <h1>재생</h1>
