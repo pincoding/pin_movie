@@ -104,8 +104,8 @@ const PlayWrap = styled.div`
 
   }
   @media screen and (max-width: 480px) {
-   margin-top: 30px;
-
+  padding: 12px 40px;
+  margin-top: 30px;
   }
   
 `;
