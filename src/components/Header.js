@@ -74,7 +74,7 @@ export const Header = () => {
       current.style.backdropFilter = "blur(3px)"
     }else{
       current.style.position = "absolute";
-      current.style.backgroundColor = "transparent"; // 투명도
+      current.style.backgroundColor = "transparent"; 
       current.style.backdropFilter = "blur(0px)";
     }
 
