@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const SFooter = styled.div`
+  width: 100vw;
   height: 200px;
   background-color: black;
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #1c1c1c;
   margin-top: 100px;
+  /* top: 2220px; */
 `;
 const Con = styled.div`
   display: flex;

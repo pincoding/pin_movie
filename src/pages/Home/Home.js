@@ -8,6 +8,12 @@ import { MainHome } from "./MainHome";
 import { HomeSec } from "./HomeSec";
 import { HomeSec02 } from "./HomeSec02";
 import { Loadings } from "../../components/Loading";
+import styled from "styled-components";
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
 
 export const Home = () => {
   const [upData, setupData] = useState([]);
@@ -43,7 +49,7 @@ export const Home = () => {
   }, [upData]);
 
   return (
-    <div>
+    <Container>
       {Loading ? (
         <Loadings />
       ) : (
@@ -60,6 +66,6 @@ export const Home = () => {
           )}
         </>
       )}
-    </div>
+    </Container>
   );
 };

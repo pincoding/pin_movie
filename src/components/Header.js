@@ -14,8 +14,13 @@ const SHeader = styled.div`
   top: 0;
   left: 0;
   z-index: 10;
-  background: rgb(2,0,36);
-  background: linear-gradient(180deg, rgba(2,0,36,0.6699929971988796) 0%, rgba(0,0,0,0.46551120448179273) 35%, rgba(0,0,0,0) 100%);
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 0.6699929971988796) 0%,
+    rgba(0, 0, 0, 0.46551120448179273) 35%,
+    rgba(0, 0, 0, 0) 100%
+  );
   @media screen and (max-width: 1024px) {
   }
   @media screen and (max-width: 768px) {
@@ -53,14 +58,13 @@ const MenuWrap = styled.div`
   @media screen and (max-width: 480px) {
     right: 20px;
     p {
-    font-size: 20px;
-    margin-left: 14px;
-  }
+      font-size: 20px;
+      margin-left: 14px;
+    }
   }
 `;
 
 export const Header = () => {
-
   const headerRef = useRef();
 
   const srollHandler = () => {
@@ -69,22 +73,20 @@ export const Header = () => {
 
     console.log(current);
 
-    if(pageY >= 200){
+    if (pageY >= 200) {
       current.style.position = "fixed";
       current.style.backgroundColor = "rgba(0,0,0,0.7)";
-      current.style.backdropFilter = "blur(3px)"
-    }else{
+      current.style.backdropFilter = "blur(3px)";
+    } else {
       current.style.position = "absolute";
-      current.style.backgroundColor = "transparent"; 
+      current.style.backgroundColor = "transparent";
       current.style.backdropFilter = "blur(0px)";
     }
+  };
 
-
-  }
-
-  useEffect(()=>{
-    window.addEventListener("scroll",srollHandler)
-  })
+  useEffect(() => {
+    window.addEventListener("scroll", srollHandler);
+  });
   return (
     <SHeader ref={headerRef}>
       <Logo>
@@ -94,10 +96,14 @@ export const Header = () => {
       </Logo>
       <MenuWrap>
         <Link to={"/"}>
-          <p><IoHomeOutline /></p>
+          <p>
+            <IoHomeOutline />
+          </p>
         </Link>
         <Link to={"/search"}>
-          <p><FiSearch /></p>
+          <p>
+            <FiSearch />
+          </p>
         </Link>
       </MenuWrap>
     </SHeader>
