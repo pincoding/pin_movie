@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { imgURL } from "../../imgurl";
 import { Loadings } from "../../components/Loading";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const Wrap = styled.div`
   padding: 0px 100px 0px 100px;
@@ -141,19 +142,21 @@ export const Search = () => {
           <>
             {resData &&
               resData.map((data) => (
-                <BgImg key={data.id}>
-                  {data?.poster_path ? (
-                    <img
-                      src={`${imgURL.imgSize300}${data?.poster_path}`}
-                      alt={data?.title}
-                    />
-                  ) : (
-                    <img
-                      src={`https://asean.org/wp-content/uploads/2022/07/No-Image-Placeholder.svg.png`}
-                      alt={data?.title}
-                    />
-                  )}
-                </BgImg>
+                <Link to={`/detail/${data.id}`}>
+                  <BgImg key={data.id}>
+                    {data?.poster_path ? (
+                      <img
+                        src={`${imgURL.imgSize300}${data?.poster_path}`}
+                        alt={data?.title}
+                      />
+                    ) : (
+                      <img
+                        src={`https://asean.org/wp-content/uploads/2022/07/No-Image-Placeholder.svg.png`}
+                        alt={data?.title}
+                      />
+                    )}
+                  </BgImg>
+                </Link>
               ))}
           </>
         )}
