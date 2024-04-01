@@ -9,7 +9,6 @@ const SFooter = styled.div`
   justify-content: space-between;
   border-top: 1px solid #1c1c1c;
   margin-top: 100px;
-  /* top: 2220px; */
 `;
 const Con = styled.div`
   display: flex;
@@ -38,6 +37,9 @@ const TextBox = styled.div`
   a {
     text-decoration: dotted;
   }
+  p {
+    color: #666666;
+  }
   @media screen and (max-width: 1024px) {
     padding: 20px 100px 0 30px;
     h1 {
@@ -58,33 +60,11 @@ const TextBox = styled.div`
     }
     p {
       font-size: 12px;
+      color: black;
     }
     a {
       font-size: 12px;
     }
-  }
-`;
-const ConIn = styled.div`
-  width: 200px;
-  display: flex;
-  margin-right: 90px;
-  padding-top: 20px;
-  justify-content: space-between;
-  @media screen and (max-width: 480px) {
-    margin-right: 30px;
-  }
-`;
-const ImgBox = styled.div`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 `;
 
@@ -105,33 +85,6 @@ export const Footer = () => {
           <p>Email : dydtjswkdrns@naver.com</p>
         </TextBox>
       </Con>
-
-      <ConIn>
-        <ImgBox>
-          <img
-            src="https://blog.kakaocdn.net/dn/HDY7T/btrY2our4Rw/Fw6bz0QroBUp1YxglkkwEK/img.webp"
-            alt="구글"
-          ></img>
-        </ImgBox>
-        <ImgBox>
-          <img
-            src="https://i.namu.wiki/i/p_1IEyQ8rYenO9YgAFp_LHIAW46kn6DXT0VKmZ_jKNijvYth9DieYZuJX_E_H_4GkCER_sVKhMqSyQYoW94JKA.svg"
-            alt="네이버"
-          ></img>
-        </ImgBox>
-        <ImgBox>
-          <img
-            src="https://cdn.pixabay.com/photo/2018/11/13/22/01/instagram-3814080_1280.png"
-            alt="인스타"
-          ></img>
-        </ImgBox>
-        <ImgBox>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/124/124010.png"
-            alt="페이스북"
-          ></img>
-        </ImgBox>
-      </ConIn>
     </SFooter>
   );
 };

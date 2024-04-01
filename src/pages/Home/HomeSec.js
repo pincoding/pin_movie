@@ -10,8 +10,8 @@ const Section = styled.div`
   h1 {
     padding: 20px 0;
     color: #fff;
-    font-size: 28px;
-    font-weight: 500;
+    font-size: 24px;
+    font-weight: 700;
   }
   @media screen and (max-width: 1024px) {
     h1 {

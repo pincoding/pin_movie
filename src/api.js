@@ -34,3 +34,8 @@ export const searchMoive = (keyword) => {
   const searchUrl = back_part + `search/movie?query=${keyword}&language=ko-kr`;
   return fetch(searchUrl, options).then((res) => res.json());
 };
+
+export const videos = (vidid) => {
+  const videoUrl = back_part + `movie/${vidid}/videos?language=ko-kr`;
+  return fetch(videoUrl, options).then((res) => res.json());
+};

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -33,8 +34,10 @@ export const Error404 = () => {
   return (
     <div>
       <NotFound>
+        <Helmet>
+          <title>Error 404</title>
+        </Helmet>
         <h2>404</h2>
-
         <p>
           서비스 이용에 불편을 드려 죄송합니다. 해당 페이지를 찾을 수 없습니다.
           홈페이지로 이동해 다양한 콘텐츠를 만나보세요.

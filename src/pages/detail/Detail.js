@@ -1,10 +1,11 @@
 // import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { details } from "../../api";
+import { details, videos } from "../../api";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { imgURL } from "../../imgurl";
 import { Loadings } from "../../components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const Warp = styled.div`
   padding-top: 80px;
@@ -15,7 +16,8 @@ const Warp = styled.div`
 `;
 const DetSec01 = styled.div`
   width: 60%;
-  height: 40vh;
+  height: 55vh;
+  position: relative;
   img {
     height: 100%;
     object-fit: cover;
@@ -71,20 +73,21 @@ const ConWrap = styled.div`
     line-height: 23px;
   }
   @media screen and (max-width: 480px) {
-    h1{
-      font-size : 16px;
+    h1 {
+      font-size: 16px;
       padding: 3px 10px;
     }
-    h2{
+    h2 {
       font-size: 15px;
     }
-    h3{
+    h3 {
       width: 90vw;
       display: block;
       font-size: 15px;
     }
   }
 `;
+
 const PlayWrap = styled.div`
   padding: 8px 40px;
   height: fit-content;
@@ -92,54 +95,88 @@ const PlayWrap = styled.div`
   justify-content: center;
   background-color: #1c1c1c;
   border-radius: 20px;
+  position: relative;
   &:hover {
     background-color: #00a7f6;
     cursor: pointer;
     user-select: none;
   }
   @media screen and (max-width: 1024px) {
-    
   }
   @media screen and (max-width: 768px) {
-
   }
   @media screen and (max-width: 480px) {
-  padding: 12px 40px;
-  margin-top: 30px;
+    padding: 12px 40px;
+    margin-top: 30px;
   }
-  
+`;
+
+const IframeWrap = styled.div`
+  width: ${(props) => props.$bgSize};
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
 `;
 
 export const Detail = () => {
   const { id } = useParams();
   const [data, setData] = useState();
-  const [Loading, setLoading] = useState(true);
+  const [viData, setviData] = useState();
+  const [widhtData, setwidhtData] = useState("0%");
 
+  const [Loading, setLoading] = useState(true);
   useEffect(() => {
     (async () => {
       try {
         const detailId = await details(id);
+        const { results } = await videos(id);
+        setviData(results);
+        // console.log(vidId);
+
         setData(detailId);
-        console.log(detailId);
+        // console.log(detailId);
         setLoading(false);
       } catch (error) {
         console.log(error);
       }
     })();
   }, [id]);
-  console.log(data?.backdrop_path);
+  // console.log(viData[0]?.key);
+  // console.log(data?.backdrop_path);
+
+  const videosHandler = () => {
+    setwidhtData("100%");
+  };
+
   return (
     <>
       {Loading ? (
         <Loadings />
       ) : (
         <>
+          <Helmet>
+            <title>자세히보기</title>
+          </Helmet>
           <Warp>
             <DetSec01>
               <img
                 src={`${imgURL.original}${data?.backdrop_path}`}
                 alt={data?.title}
               />
+              <IframeWrap $bgSize={widhtData}>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${viData[0]?.key}`}
+                  title="[쿵푸팬더4] 레전드 팬더 두둥 등장"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
+              </IframeWrap>
             </DetSec01>
             <DetSec02>
               <ConWrap className="conWarp01">
@@ -151,7 +188,8 @@ export const Detail = () => {
                 <h2>상영시간 : {data?.runtime}분</h2>
                 <h3>{data?.overview}</h3>
               </ConWrap>
-              <PlayWrap>
+              <PlayWrap onClick={videosHandler}>
+                {console.log(widhtData)}
                 <h1>재생</h1>
               </PlayWrap>
             </DetSec02>

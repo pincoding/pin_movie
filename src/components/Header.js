@@ -71,7 +71,7 @@ export const Header = () => {
     const pageY = window.scrollY;
     const current = headerRef.current;
 
-    console.log(current);
+    // console.log(current);
 
     if (pageY >= 200) {
       current.style.position = "fixed";

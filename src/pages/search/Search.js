@@ -5,6 +5,7 @@ import { searchMoive } from "../../api";
 import { useForm } from "react-hook-form";
 import { imgURL } from "../../imgurl";
 import { Loadings } from "../../components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const Wrap = styled.div`
   padding: 0px 100px 0px 100px;
@@ -19,17 +20,16 @@ const Wrap = styled.div`
     /* padding: 150px; */
   }
   @media screen and (max-width: 768px) {
-
   }
   @media screen and (max-width: 480px) {
     padding: 100px 0px 0px 0px;
-    h1{
+    h1 {
       font-size: 20px;
       margin-top: 50px;
       margin-left: 20px;
       padding-bottom: 20px;
     }
-    p{
+    p {
       margin-top: 8px;
       margin-left: 15px;
     }
@@ -45,10 +45,8 @@ const SearchHeader = styled.form`
     padding: 5px 5px;
   }
   @media screen and (max-width: 1024px) {
-
   }
   @media screen and (max-width: 768px) {
-
   }
   @media screen and (max-width: 480px) {
     padding: 0px 30px 0px 10px;
@@ -62,10 +60,8 @@ const Section = styled.div`
   row-gap: 20px;
   column-gap: 20px;
   @media screen and (max-width: 1024px) {
-    
   }
   @media screen and (max-width: 768px) {
-
   }
   @media screen and (max-width: 480px) {
     width: 90%;
@@ -84,18 +80,15 @@ const BgImg = styled.div`
     border-radius: 20px;
   }
   @media screen and (max-width: 1024px) {
-    
   }
   @media screen and (max-width: 768px) {
-
   }
   @media screen and (max-width: 480px) {
     height: 160px;
-    img{
+    img {
       border-radius: 10px;
     }
   }
-
 `;
 
 export const Search = () => {
@@ -126,6 +119,9 @@ export const Search = () => {
   console.log(errors?.searchMode?.message);
   return (
     <Wrap>
+      <Helmet>
+        <title>검색</title>
+      </Helmet>
       <SearchHeader onSubmit={handleSubmit(onSubmit)}>
         <input
           {...register("searchMode", {
@@ -136,7 +132,7 @@ export const Search = () => {
         ></input>
       </SearchHeader>
       <p>{errors?.searchMode?.message}</p>
-      <h1>검색내용 : {keyword}</h1>
+      <h1>{resData ? <>검색내용 : {keyword}</> : ""}</h1>
 
       <Section>
         {Loading ? (

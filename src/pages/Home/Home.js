@@ -9,11 +9,9 @@ import { HomeSec } from "./HomeSec";
 import { HomeSec02 } from "./HomeSec02";
 import { Loadings } from "../../components/Loading";
 import styled from "styled-components";
+import { Helmet } from "react-helmet-async";
 
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-`;
+const Container = styled.div``;
 
 export const Home = () => {
   const [upData, setupData] = useState([]);
@@ -56,6 +54,9 @@ export const Home = () => {
         <>
           {upData && (
             <>
+              <Helmet>
+                <title>Home</title>
+              </Helmet>
               <MainHome mainData={upData} mainRandom={randomIndexes}></MainHome>
               <HomeSec secData={topData} text={"핀무비 TOP순위"} />
               <HomeSec02 secData={popData} text={"인기순위"} />

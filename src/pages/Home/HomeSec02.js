@@ -10,8 +10,8 @@ const Section = styled.div`
   h1 {
     padding: 20px 0;
     color: #fff;
-    font-size: 28px;
-    font-weight: 500;
+    font-size: 24px;
+    font-weight: 700;
   }
   @media screen and (max-width: 1024px) {
   }
@@ -68,6 +68,18 @@ const Box = styled.div`
 const Vote = styled.div``;
 
 export const HomeSec02 = ({ secData, text }) => {
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      //역순
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  // secData 배열 섞기
+  const shuffledSecData = shuffleArray([...secData]);
+
   const params = {
     slidesPerView: 6.2,
     spaceBetween: 17,
@@ -92,7 +104,7 @@ export const HomeSec02 = ({ secData, text }) => {
         <Section>
           <h1>{text}</h1>
           <Swiper {...params}>
-            {secData.map((data) => (
+            {shuffledSecData.map((data) => (
               <SwiperSlide key={data.id}>
                 <Link to={`/detail/${data.id}`}>
                   <Con>
