@@ -55,13 +55,29 @@ const DetSec02 = styled.div`
 `;
 
 const ButtonBox = styled.div`
-  padding: 5px 20px;
+  display: ${(props) => props.$Btn};
+  padding: 8px 40px;
   position: absolute;
-  right: 0;
+  right: 120px;
   background-color: #1c1c1c;
-  border-radius: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
   h1 {
     font-size: 15px;
+  }
+  @media screen and (max-width: 1024px) {
+  }
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    padding: 5px 20px;
+    border-radius: 10px;
+    right: 0px;
+    border-radius: 10px;
+    h1 {
+      font-size: 15px;
+    }
   }
 `;
 
@@ -139,6 +155,7 @@ export const Detail = () => {
   const [data, setData] = useState();
   const [viData, setviData] = useState();
   const [widhtData, setwidhtData] = useState("0%");
+  const [disData, setDisData] = useState("none");
 
   const [Loading, setLoading] = useState(true);
   useEffect(() => {
@@ -162,10 +179,15 @@ export const Detail = () => {
 
   const videosHandler = () => {
     setwidhtData("100%");
+    setDisData("block");
   };
   const delBtnHandler = () => {
     setwidhtData("0%");
+    setDisData("none");
   };
+
+  console.log(viData && viData[0]?.name);
+
   return (
     <>
       {Loading ? (
@@ -181,21 +203,28 @@ export const Detail = () => {
                 src={`${imgURL.original}${data?.backdrop_path}`}
                 alt={data?.title}
               />
+
               <IframeWrap $bgSize={widhtData}>
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={`https://www.youtube.com/embed/${viData[0]?.key}`}
-                  title="[쿵푸팬더4] 레전드 팬더 두둥 등장"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                ></iframe>
+                {viData && (
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${viData[0]?.key}`}
+                    title={viData[0]?.name}
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen="fullscreen"
+                  ></iframe>
+                )}
               </IframeWrap>
             </DetSec01>
             <DetSec02>
-              <ButtonBox onClick={delBtnHandler} $bgSize={widhtData}>
+              <ButtonBox
+                onClick={delBtnHandler}
+                $Btn={disData}
+                $bgSize={widhtData}
+              >
                 <h1>취소</h1>
               </ButtonBox>
               <ConWrap className="conWarp01">
@@ -208,7 +237,7 @@ export const Detail = () => {
                 <h3>{data?.overview}</h3>
               </ConWrap>
               <PlayWrap onClick={videosHandler}>
-                {console.log(widhtData)}
+                {/* {console.log(widhtData)} */}
                 <h1>재생</h1>
               </PlayWrap>
             </DetSec02>
