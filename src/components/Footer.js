@@ -45,11 +45,17 @@ const TextBox = styled.div`
     h1 {
       font-size: 28px;
     }
+    p {
+      color: #666666;
+    }
   }
   @media screen and (max-width: 768px) {
     padding: 20px 0px 0 30px;
     h1 {
       font-size: 28px;
+    }
+    p {
+      color: #666666;
     }
   }
   @media screen and (max-width: 480px) {
@@ -60,7 +66,7 @@ const TextBox = styled.div`
     }
     p {
       font-size: 12px;
-      color: black;
+      color: #666666;
     }
     a {
       font-size: 12px;
