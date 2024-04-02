@@ -37,6 +37,8 @@ const DetSec02 = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  position: relative;
+
   .conWarp01 {
     width: 80%;
   }
@@ -51,6 +53,18 @@ const DetSec02 = styled.div`
     width: 90%;
   }
 `;
+
+const ButtonBox = styled.div`
+  padding: 5px 20px;
+  position: absolute;
+  right: 0;
+  background-color: #1c1c1c;
+  border-radius: 10px;
+  h1 {
+    font-size: 15px;
+  }
+`;
+
 const ConWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -149,7 +163,9 @@ export const Detail = () => {
   const videosHandler = () => {
     setwidhtData("100%");
   };
-
+  const delBtnHandler = () => {
+    setwidhtData("0%");
+  };
   return (
     <>
       {Loading ? (
@@ -179,6 +195,9 @@ export const Detail = () => {
               </IframeWrap>
             </DetSec01>
             <DetSec02>
+              <ButtonBox onClick={delBtnHandler} $bgSize={widhtData}>
+                <h1>취소</h1>
+              </ButtonBox>
               <ConWrap className="conWarp01">
                 <h1>
                   <span>핀</span>무비
