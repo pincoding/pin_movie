@@ -142,19 +142,24 @@ const PlayWrap = styled.div`
 `;
 
 const IframeWrap = styled.div`
-  width: ${(props) => props.$bgSize};
+  /* width: ${(props) => props.$bgSize}; */
+  width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   transition: 0.5s;
+  opacity: ${(props) => props.$OpBg};
 `;
+
+const DetSec03 = styled.div``;
 
 export const Detail = () => {
   const { id } = useParams();
   const [data, setData] = useState();
   const [viData, setviData] = useState();
-  const [widhtData, setwidhtData] = useState("0%");
+  const [opdata, opData] = useState("0");
+  // const [widhtData, setwidhtData] = useState("0%");
   const [disData, setDisData] = useState("none");
 
   const [Loading, setLoading] = useState(true);
@@ -178,15 +183,18 @@ export const Detail = () => {
   // console.log(data?.backdrop_path);
 
   const videosHandler = () => {
-    setwidhtData("100%");
+    opData("1");
+    // setwidhtData("100%");
     setDisData("block");
   };
   const delBtnHandler = () => {
-    setwidhtData("0%");
+    opData("0");
+    // setwidhtData("0%");
     setDisData("none");
   };
-
-  console.log(viData && viData[0]?.name);
+  const videoLength = viData && viData.length > 0;
+  // console.log(viData && viData[0]?.name);
+  console.log(viData && viData);
 
   return (
     <>
@@ -204,17 +212,20 @@ export const Detail = () => {
                 alt={data?.title}
               />
 
-              <IframeWrap $bgSize={widhtData}>
+              <IframeWrap $OpBg={opdata}>
                 {viData && (
                   <iframe
                     width="100%"
                     height="100%"
-                    src={`https://www.youtube.com/embed/${viData[0]?.key}`}
+                    src={
+                      viData && videoLength
+                        ? `https://www.youtube.com/embed/${viData[0]?.key}`
+                        : ""
+                    }
                     title={viData[0]?.name}
-                    frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen="fullscreen"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen="fullscreen"
                   ></iframe>
                 )}
               </IframeWrap>
@@ -223,7 +234,8 @@ export const Detail = () => {
               <ButtonBox
                 onClick={delBtnHandler}
                 $Btn={disData}
-                $bgSize={widhtData}
+                // $bgSize={widhtData}
+                $OpBg={opdata}
               >
                 <h1>취소</h1>
               </ButtonBox>
@@ -236,11 +248,33 @@ export const Detail = () => {
                 <h2>상영시간 : {data?.runtime}분</h2>
                 <h3>{data?.overview}</h3>
               </ConWrap>
-              <PlayWrap onClick={videosHandler}>
-                {/* {console.log(widhtData)} */}
-                <h1>재생</h1>
-              </PlayWrap>
+              {viData && videoLength ? (
+                <PlayWrap onClick={videosHandler}>
+                  <h1>재생</h1>
+                  {console.log(viData.length)}
+                </PlayWrap>
+              ) : (
+                ""
+              )}
             </DetSec02>
+            {viData && videoLength ? (
+              // viData안에 배열 1번말고 다 가지고온다.
+              // 이걸 맵함수로 넣어준다.
+              <DetSec03>
+                {viData &&
+                  viData.map((data) => (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${data.key}`}
+                      title={data?.name}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen="fullscreen"
+                    ></iframe>
+                  ))}
+              </DetSec03>
+            ) : (
+              ""
+            )}
           </Warp>
         </>
       )}

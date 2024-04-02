@@ -28,18 +28,27 @@ const Con = styled.div`
 const TextBox = styled.div`
   display: flex;
   padding: 20px 100px 0 30px;
-  color: white;
   flex-direction: column;
   line-height: 30px;
+  cursor: pointer;
   h1 {
+    color: white;
     font-size: 28px;
   }
   a {
+    color : #666666;
     text-decoration: dotted;
   }
   p {
     color: #666666;
   }
+  a:hover{
+    color: white;
+  }
+  p:hover{
+    color: white;
+  }
+  
   @media screen and (max-width: 1024px) {
     padding: 20px 100px 0 30px;
     h1 {
