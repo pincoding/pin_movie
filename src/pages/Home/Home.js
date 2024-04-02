@@ -61,7 +61,7 @@ export const Home = () => {
               <HomeSec secData={topData} text={"핀무비 TOP순위"} />
               <HomeSec02 secData={popData} text={"인기순위"} />
               <HomeSec02 secData={nowData} text={"상영 영화"} />
-              <HomeSec02 secData={upData} text={"계봉예정작"} />
+              <HomeSec02 secData={upData} text={"개봉예정작"} />
               <h3>{upData?.title}</h3>
             </>
           )}
