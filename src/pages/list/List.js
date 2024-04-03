@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
-import { discover } from "../../api";
+import { discover, list02 } from "../../api";
 import { Link, useParams } from "react-router-dom";
 import { imgURL } from "../../imgurl";
 import styled from "styled-components";
 const Wrap = styled.div`
-  padding: 0px 100px 0px 100px;
+  padding: 240px 100px 0px 100px;
   p {
     color: #1f77ff;
   }
   h1 {
     font-size: 30px;
     margin-top: 150px;
+    color: white;
   }
   @media screen and (max-width: 1024px) {
     padding: 100px 50px 0px 50px;
@@ -92,11 +93,15 @@ const BgImg = styled.div`
 export const List = () => {
   const { id } = useParams();
   const [disdata, setDisdata] = useState();
+  const [gendata, setGendata] = useState();
 
   useEffect(() => {
     (async () => {
       try {
         const { results } = await discover(id);
+        const { genres } = await list02(id);
+
+        setGendata(genres);
         setDisdata(results);
       } catch (error) {
         console.log(error);
@@ -104,7 +109,13 @@ export const List = () => {
     })();
   }, [id]);
 
+  //   const fnId = () => {
+  //     if (id === gendata.map((data) => data.id)) {
+  //     }
+  //   };
+
   console.log(disdata);
+  console.log(gendata);
   return (
     <Wrap>
       <Section>

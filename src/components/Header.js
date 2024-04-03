@@ -80,7 +80,7 @@ const SubWrap = styled.div`
   padding: 30px 30px;
   border-bottom-left-radius: 20px;
   border-top-right-radius: 20px;
-  opacity: ${(props) => props.$bg};
+  opacity: ${(props) => props.$opdata};
 `;
 const SubMeun = styled.div`
   width: fit-content;
@@ -88,6 +88,12 @@ const SubMeun = styled.div`
   h1 {
     width: fit-content;
   }
+`;
+const IconBox = styled.div``;
+const Ptitle = styled.div`
+  font-size: 24px;
+  margin-left: 30px;
+  cursor: pointer;
 `;
 
 export const Header = () => {
@@ -147,18 +153,21 @@ export const Header = () => {
             <FiSearch />
           </p>
         </Link>
-        <p>
-          <BiMoviePlay onClick={MenubarHandler} $bg={opcData} />
-        </p>
+
+        <IconBox>
+          <Ptitle $opdata={opcData}>
+            <BiMoviePlay onClick={MenubarHandler} />
+          </Ptitle>
+        </IconBox>
       </MenuWrap>
-      <SubWrap $bg={opcData}>
+      <SubWrap $opdata={opcData}>
         {listdata &&
           listdata.map((data) => (
             <SubMeun key={data.id}>
               <Link
                 to={`/list/${data.id}`}
                 onClick={MenubarHandler}
-                $bg={opcData}
+                $opdata={opcData}
               >
                 <h1>{data.name}</h1>
               </Link>
