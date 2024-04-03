@@ -18,9 +18,22 @@ const Wrap = styled.div`
     margin-top: 150px;
   }
   @media screen and (max-width: 1024px) {
-    /* padding: 150px; */
+    padding: 100px 50px 0px 50px;
+    h1 {
+      font-size: 26px;
+      margin-top: 100px;
+    }
   }
   @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 20px;
+      margin-top: 50px;
+    }
+    p {
+      font-size: 14px;
+      /* margin-left: 5px; */
+    }
+    padding: 100px 50px 0px 50px;
   }
   @media screen and (max-width: 480px) {
     padding: 100px 0px 0px 0px;
@@ -33,6 +46,7 @@ const Wrap = styled.div`
     p {
       margin-top: 8px;
       margin-left: 15px;
+      font-size: 12px;
     }
   }
 `;
@@ -46,11 +60,18 @@ const SearchHeader = styled.form`
     padding: 5px 5px;
   }
   @media screen and (max-width: 1024px) {
+    padding: 60px 0px 10px 0px;
   }
   @media screen and (max-width: 768px) {
+    input {
+      padding: 0px 0px;
+    }
   }
   @media screen and (max-width: 480px) {
     padding: 0px 30px 0px 10px;
+    input {
+      padding: 0px 5px;
+    }
   }
 `;
 
@@ -63,6 +84,10 @@ const Section = styled.div`
   @media screen and (max-width: 1024px) {
   }
   @media screen and (max-width: 768px) {
+    margin-top: 14px;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 10px;
+    column-gap: 10px;
   }
   @media screen and (max-width: 480px) {
     width: 90%;
@@ -81,8 +106,10 @@ const BgImg = styled.div`
     border-radius: 20px;
   }
   @media screen and (max-width: 1024px) {
+    height: 270px;
   }
   @media screen and (max-width: 768px) {
+    height: 220px;
   }
   @media screen and (max-width: 480px) {
     height: 160px;

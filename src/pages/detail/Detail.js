@@ -1,6 +1,6 @@
 // import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { details, videos } from "../../api";
+import { details, lists, videos } from "../../api";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { imgURL } from "../../imgurl";
@@ -75,6 +75,7 @@ const ButtonBox = styled.div`
   @media screen and (max-width: 1024px) {
   }
   @media screen and (max-width: 768px) {
+    padding: 8px 25px;
   }
   @media screen and (max-width: 480px) {
     padding: 5px 20px;
@@ -140,6 +141,7 @@ const PlayWrap = styled.div`
   @media screen and (max-width: 1024px) {
   }
   @media screen and (max-width: 768px) {
+    padding: 8px 25px;
   }
   @media screen and (max-width: 480px) {
     padding: 12px 40px;
@@ -184,78 +186,15 @@ const Reviews = styled.div`
   }
 `;
 
-const DetSec03 = styled.div`
-  width: 16%;
-  height: 100%;
-  position: fixed;
-  top: 0px;
-  right: 0;
-  padding-top: 80px;
-  box-shadow: -3px -3px 10px 1px #3b3b3b;
-  /* overflow-y: scroll; */
-  background-color: black;
-  opacity: ${(props) => props.$Bg};
-  justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(1);
-  row-gap: 20px;
-  /* border-radius: 20px; */
-`;
-// const DetSec03 = styled.div`
-//   width: 18vw;
-//   height: 100%;
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   background-color: #1d1d1d;
-//   display: flex;
-//   overflow-y: scroll;
-//   opacity: ${(props) => props.$Bg};
-// `;
-// const VconWrap = styled.div`
-//   margin-top: 80px;
-//   display: grid;
-//   grid-template-columns: repeat(1, 1fr);
-//   row-gap: 10px;
-//   justify-content: center;
-//   margin: 80px auto;
-// `;
-const BtnClose = styled.div`
-  display: ${(props) => props.$clBtn};
-  padding: 8px 30px;
-  position: absolute;
-  right: 120px;
-  background-color: #1c1c1c;
-  border-radius: 20px;
-  cursor: pointer;
-  user-select: none;
-  h1 {
-    font-size: 16px;
-  }
-  @media screen and (max-width: 1024px) {
-  }
-  @media screen and (max-width: 768px) {
-  }
-  @media screen and (max-width: 480px) {
-    padding: 5px 20px;
-    border-radius: 10px;
-    right: 0px;
-    border-radius: 10px;
-    h1 {
-      font-size: 15px;
-    }
-  }
-`;
-
 export const Detail = () => {
   const { id } = useParams();
   const [data, setData] = useState();
   const [viData, setviData] = useState();
   const [opdata, opData] = useState("0");
-  const [rightData, setRightData] = useState("0");
+
   // const [widhtData, setwidhtData] = useState("0%");
   const [disData, setDisData] = useState("none");
-  const [textData, setTextData] = useState("none");
+  // const [objdata, setobjdata] = useState("none");
 
   const [Loading, setLoading] = useState(true);
   useEffect(() => {
@@ -263,11 +202,10 @@ export const Detail = () => {
       try {
         const detailId = await details(id);
         const { results } = await videos(id);
+        // const obj = await lists(id);
+        // setobjdata(obj);
         setviData(results);
-        // console.log(vidId);
-
         setData(detailId);
-        // console.log(detailId);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -286,18 +224,9 @@ export const Detail = () => {
     setDisData("none");
   };
 
-  const reviewsHandle = () => {
-    setRightData("1");
-    setTextData("block");
-  };
-
-  const closeHandler = () => {
-    setRightData("0");
-    setTextData("none");
-  };
   const videoLength = viData && viData.length > 0;
-  // console.log(viData && viData[0]?.name);
-  // console.log(viData && viData);
+
+  // console.log(objdata);
 
   return (
     <>
@@ -334,22 +263,6 @@ export const Detail = () => {
               </IframeWrap>
             </DetSec01>
             <DetSec02>
-              <Reviews
-                onClick={reviewsHandle}
-                $clBtn={textData}
-                $Bg={rightData}
-              >
-                {console.log(rightData)}
-                <h1>리뷰모음</h1>
-              </Reviews>
-              <BtnClose
-                onClick={closeHandler}
-                $clBtn={textData}
-                $Bg={rightData}
-              >
-                <h1>리뷰닫기</h1>
-              </BtnClose>
-
               <ButtonBox onClick={delBtnHandler} $Btn={disData} $OpBg={opdata}>
                 <h1>취소</h1>
               </ButtonBox>
@@ -371,29 +284,6 @@ export const Detail = () => {
                 ""
               )}
             </DetSec02>
-            {viData && videoLength ? (
-              // viData안에 배열 1번말고 다 가지고온다.
-              // 이걸 맵함수로 넣어준다.
-              <DetSec03 $Bg={rightData}>
-                {/* <VconWrap> */}
-                {viData &&
-                  viData.map((data) => (
-                    <div key={data.id}>
-                      <iframe
-                        width="90%"
-                        src={`https://www.youtube.com/embed/${data.key}`}
-                        title={data?.name}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen="fullscreen"
-                      ></iframe>
-                    </div>
-                  ))}
-                {/* </VconWrap> */}
-              </DetSec03>
-            ) : (
-              ""
-            )}
           </Warp>
         </>
       )}

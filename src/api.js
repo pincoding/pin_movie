@@ -39,3 +39,26 @@ export const videos = (vidid) => {
   const videoUrl = back_part + `movie/${vidid}/videos?language=ko-kr`;
   return fetch(videoUrl, options).then((res) => res.json());
 };
+
+// export const lists = (id) => {
+//   const movieList = back_part + `movie/${id}/lists?language=ko-kr`;
+//   return fetch(movieList, options).then((res) => res.json());
+// };
+
+// export const list = () =>
+//   fetch(url("genre/movie/list"), options).then((res) => res.json());
+// export const list = () =>
+//   fetch(url("certification/movie/list"), options).then((res) => res.json());
+export const list02 = () =>
+  fetch(url("genre/movie/list?language=ko-KR"), options).then((res) =>
+    res.json()
+  );
+export const discover = (id) => {
+  const disUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-kr&page=1&sort_by=popularity..desc&with_genres=${id}`;
+  return fetch(disUrl, options).then((res) => res.json());
+};
+
+//api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc' \
+// discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc' \with_release_type
+
+// discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=vote_count.desc&with_genres=${id}`

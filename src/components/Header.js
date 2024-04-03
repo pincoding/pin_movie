@@ -1,10 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { IoHomeOutline } from "react-icons/io5";
+import { BiMoviePlay } from "react-icons/bi";
 import styled from "styled-components";
+import { list02 } from "../api";
 
 const SHeader = styled.div`
+  width: 100%;
   padding: 20px 30px;
   display: flex;
   justify-content: space-between;
@@ -50,6 +53,7 @@ const MenuWrap = styled.div`
   p {
     font-size: 24px;
     margin-left: 30px;
+    cursor: pointer;
   }
   @media screen and (max-width: 1024px) {
   }
@@ -63,9 +67,33 @@ const MenuWrap = styled.div`
     }
   }
 `;
+const SubWrap = styled.div`
+  height: 250px;
+  background-color: black;
+  position: absolute;
+  top: 68px;
+  right: 60px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 20px;
+  column-gap: 20px;
+  padding: 30px 30px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  opacity: ${(props) => props.$bg};
+`;
+const SubMeun = styled.div`
+  width: fit-content;
+  display: flex;
+  h1 {
+    width: fit-content;
+  }
+`;
 
 export const Header = () => {
   const headerRef = useRef();
+  const [listdata, setlistdata] = useState();
+  const [opcData, setOpcData] = useState(0);
 
   const srollHandler = () => {
     const pageY = window.scrollY;
@@ -85,8 +113,22 @@ export const Header = () => {
   };
 
   useEffect(() => {
+    (async () => {
+      const { genres } = await list02();
+      setlistdata(genres);
+    })();
     window.addEventListener("scroll", srollHandler);
-  });
+  }, []);
+
+  const MenubarHandler = () => {
+    if (0 === opcData) {
+      setOpcData(1);
+    } else if (1 === opcData) {
+      setOpcData(0);
+    }
+  };
+
+  // console.log(listdata);
   return (
     <SHeader ref={headerRef}>
       <Logo>
@@ -105,7 +147,24 @@ export const Header = () => {
             <FiSearch />
           </p>
         </Link>
+        <p>
+          <BiMoviePlay onClick={MenubarHandler} $bg={opcData} />
+        </p>
       </MenuWrap>
+      <SubWrap $bg={opcData}>
+        {listdata &&
+          listdata.map((data) => (
+            <SubMeun key={data.id}>
+              <Link
+                to={`/list/${data.id}`}
+                onClick={MenubarHandler}
+                $bg={opcData}
+              >
+                <h1>{data.name}</h1>
+              </Link>
+            </SubMeun>
+          ))}
+      </SubWrap>
     </SHeader>
   );
 };
