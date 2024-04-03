@@ -187,17 +187,19 @@ const Reviews = styled.div`
 const DetSec03 = styled.div`
   width: 16%;
   height: 100%;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 0px;
   right: 0;
-  /* background-color: #1d1d1d; */
-  background-color: #111;
-  overflow-y: scroll;
+  padding-top: 80px;
+  box-shadow: -3px -3px 10px 1px #3b3b3b;
+  /* overflow-y: scroll; */
+  background-color: black;
   opacity: ${(props) => props.$Bg};
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(1);
   row-gap: 20px;
+  /* border-radius: 20px; */
 `;
 // const DetSec03 = styled.div`
 //   width: 18vw;
@@ -378,7 +380,7 @@ export const Detail = () => {
                   viData.map((data) => (
                     <div key={data.id}>
                       <iframe
-                        width="260"
+                        width="90%"
                         src={`https://www.youtube.com/embed/${data.key}`}
                         title={data?.name}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
