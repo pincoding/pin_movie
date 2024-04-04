@@ -73,14 +73,13 @@ const SubWrap = styled.div`
   position: absolute;
   top: 68px;
   right: 60px;
-  display: grid;
+  display: ${(props) => props.$opdata};
   grid-template-columns: repeat(4, 1fr);
   row-gap: 20px;
   column-gap: 20px;
   padding: 30px 30px;
   border-bottom-left-radius: 20px;
   border-top-right-radius: 20px;
-  opacity: ${(props) => props.$opdata};
 `;
 const SubMeun = styled.div`
   width: fit-content;
@@ -99,7 +98,7 @@ const Ptitle = styled.div`
 export const Header = () => {
   const headerRef = useRef();
   const [listdata, setlistdata] = useState();
-  const [opcData, setOpcData] = useState(0);
+  const [displayData, setdisplayData] = useState("none");
 
   const srollHandler = () => {
     const pageY = window.scrollY;
@@ -126,11 +125,12 @@ export const Header = () => {
     window.addEventListener("scroll", srollHandler);
   }, []);
 
+  let booleans = "none";
   const MenubarHandler = () => {
-    if (0 === opcData) {
-      setOpcData(1);
-    } else if (1 === opcData) {
-      setOpcData(0);
+    if (booleans === displayData) {
+      setdisplayData("grid");
+    } else {
+      setdisplayData("none");
     }
   };
 
@@ -155,19 +155,19 @@ export const Header = () => {
         </Link>
 
         <IconBox>
-          <Ptitle $opdata={opcData}>
-            <BiMoviePlay onClick={MenubarHandler} />
+          <Ptitle onClick={MenubarHandler} $opdata={displayData}>
+            <BiMoviePlay />
           </Ptitle>
         </IconBox>
       </MenuWrap>
-      <SubWrap $opdata={opcData}>
+      <SubWrap $opdata={displayData}>
         {listdata &&
           listdata.map((data) => (
             <SubMeun key={data.id}>
               <Link
                 to={`/list/${data.id}`}
                 onClick={MenubarHandler}
-                $opdata={opcData}
+                $opdata={displayData}
               >
                 <h1>{data.name}</h1>
               </Link>

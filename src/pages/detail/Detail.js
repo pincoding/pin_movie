@@ -55,7 +55,7 @@ const DetSec02 = styled.div`
 `;
 
 const ButtonBox = styled.div`
-  display: ${(props) => props.$Btn};
+  display: ${(props) => props.$btn};
   padding: 8px 40px;
   position: absolute;
   right: 0px;
@@ -157,7 +157,7 @@ const IframeWrap = styled.div`
   top: 0;
   left: 0;
   transition: 0.5s;
-  opacity: ${(props) => props.$OpBg};
+  opacity: ${(props) => props.$opBg};
 `;
 const Reviews = styled.div`
   display: block;
@@ -204,7 +204,7 @@ export const Detail = () => {
         const { results } = await videos(id);
         // const obj = await lists(id);
         // setobjdata(obj);
-        setviData(results);
+        setviData(results); 
         setData(detailId);
         setLoading(false);
       } catch (error) {
@@ -244,7 +244,7 @@ export const Detail = () => {
                 alt={data?.title}
               />
 
-              <IframeWrap $OpBg={opdata}>
+              <IframeWrap $opBg={opdata}>
                 {viData && (
                   <iframe
                     width="100%"
@@ -263,7 +263,7 @@ export const Detail = () => {
               </IframeWrap>
             </DetSec01>
             <DetSec02>
-              <ButtonBox onClick={delBtnHandler} $Btn={disData} $OpBg={opdata}>
+              <ButtonBox onClick={delBtnHandler} $btn={disData} $opBg={opdata}>
                 <h1>취소</h1>
               </ButtonBox>
               <ConWrap className="conWarp01">
