@@ -1,11 +1,13 @@
 // import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { details, lists, videos } from "../../api";
+import { details, videos } from "../../api";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { imgURL } from "../../imgurl";
 import { Loadings } from "../../components/Loading";
 import { Helmet } from "react-helmet-async";
+import React from "react";
+import ReactPlayer from "react-player";
 
 const Warp = styled.div`
   padding-top: 80px;
@@ -159,38 +161,39 @@ const IframeWrap = styled.div`
   transition: 0.5s;
   opacity: ${(props) => props.$opBg};
 `;
-const Reviews = styled.div`
-  display: block;
-  padding: 8px 30px;
-  position: absolute;
-  right: 120px;
-  background-color: #1c1c1c;
-  border-radius: 20px;
-  cursor: pointer;
-  user-select: none;
-  h1 {
-    font-size: 16px;
-  }
-  @media screen and (max-width: 1024px) {
-  }
-  @media screen and (max-width: 768px) {
-  }
-  @media screen and (max-width: 480px) {
-    padding: 5px 20px;
-    border-radius: 10px;
-    right: 0px;
-    border-radius: 10px;
-    h1 {
-      font-size: 15px;
-    }
-  }
-`;
+// const Reviews = styled.div`
+//   display: block;
+//   padding: 8px 30px;
+//   position: absolute;
+//   right: 120px;
+//   background-color: #1c1c1c;
+//   border-radius: 20px;
+//   cursor: pointer;
+//   user-select: none;
+//   h1 {
+//     font-size: 16px;
+//   }
+//   @media screen and (max-width: 1024px) {
+//   }
+//   @media screen and (max-width: 768px) {
+//   }
+//   @media screen and (max-width: 480px) {
+//     padding: 5px 20px;
+//     border-radius: 10px;
+//     right: 0px;
+//     border-radius: 10px;
+//     h1 {
+//       font-size: 15px;
+//     }
+//   }
+// `;
 
 export const Detail = () => {
   const { id } = useParams();
   const [data, setData] = useState();
   const [viData, setviData] = useState();
   const [opdata, opData] = useState("0");
+  const [isPlaying, setisPlaying] = useState();
 
   // const [widhtData, setwidhtData] = useState("0%");
   const [disData, setDisData] = useState("none");
@@ -204,9 +207,10 @@ export const Detail = () => {
         const { results } = await videos(id);
         // const obj = await lists(id);
         // setobjdata(obj);
-        setviData(results); 
+        setviData(results);
         setData(detailId);
         setLoading(false);
+        setisPlaying(false);
       } catch (error) {
         console.log(error);
       }
@@ -218,10 +222,12 @@ export const Detail = () => {
   const videosHandler = () => {
     opData("1");
     setDisData("block");
+    setisPlaying(true);
   };
   const delBtnHandler = () => {
     opData("0");
     setDisData("none");
+    setisPlaying(false);
   };
 
   const videoLength = viData && viData.length > 0;
@@ -246,19 +252,14 @@ export const Detail = () => {
 
               <IframeWrap $opBg={opdata}>
                 {viData && (
-                  <iframe
+                  <ReactPlayer
                     width="100%"
                     height="100%"
-                    src={
-                      viData && videoLength
-                        ? `https://www.youtube.com/embed/${viData[0]?.key}`
-                        : ""
-                    }
-                    title={viData[0]?.name}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen="fullscreen"
-                  ></iframe>
+                    url={`https://www.youtube.com/embed/${viData[0]?.key}`}
+                    playing={isPlaying}
+                    controls={true}
+                    muted
+                  />
                 )}
               </IframeWrap>
             </DetSec01>

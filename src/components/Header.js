@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { IoHomeOutline } from "react-icons/io5";
-import { BiMoviePlay } from "react-icons/bi";
+import { FiMenu } from "react-icons/fi";
 import styled from "styled-components";
 import { list02 } from "../api";
 
@@ -90,7 +90,7 @@ const SubMeun = styled.div`
 `;
 const IconBox = styled.div``;
 const Ptitle = styled.div`
-  font-size: 24px;
+  font-size: 28px;
   margin-left: 30px;
   cursor: pointer;
 `;
@@ -156,7 +156,7 @@ export const Header = () => {
 
         <IconBox>
           <Ptitle onClick={MenubarHandler} $opdata={displayData}>
-            <BiMoviePlay />
+            <FiMenu />
           </Ptitle>
         </IconBox>
       </MenuWrap>
