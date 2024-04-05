@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { discover, list02 } from "../../api";
+import { discover } from "../../api";
 import { Link, useParams } from "react-router-dom";
 import { imgURL } from "../../imgurl";
 import styled from "styled-components";
@@ -93,15 +93,16 @@ const BgImg = styled.div`
 export const List = () => {
   const { id } = useParams();
   const [disdata, setDisdata] = useState();
-  const [gendata, setGendata] = useState();
+  // const [gendata, setGendata] = useState();
+  // const [iddata, setIdData] = useState(id);
 
   useEffect(() => {
     (async () => {
       try {
         const { results } = await discover(id);
-        const { genres } = await list02(id);
+        // const { genres } = await list02(id);
 
-        setGendata(genres);
+        // setGendata(genres);
         setDisdata(results);
       } catch (error) {
         console.log(error);
@@ -109,15 +110,15 @@ export const List = () => {
     })();
   }, [id]);
 
-  //   const fnId = () => {
-  //     if (id === gendata.map((data) => data.id)) {
-  //     }
-  //   };
+  // const resultTwo =
+  //   disdata && disdata.filter((data) => data.map((isvalue) => isvalue));
+  // console.log(resultTwo);
 
-  console.log(disdata);
-  console.log(gendata);
+  // console.log(disdata);
+  // console.log(gendata);
   return (
     <Wrap>
+      {/* <h1>{id id}</h1> */}
       <Section>
         {disdata &&
           disdata.map((data) => (

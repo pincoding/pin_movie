@@ -47,6 +47,7 @@ const Con = styled.div`
     cursor: pointer;
   }
   @media screen and (max-width: 1024px) {
+    left: 35px;
     h4 {
       width: 80%;
       font-size: 16px;
@@ -138,16 +139,16 @@ export const MainHome = ({ mainData, mainRandom }) => {
             {mainData.map((data, index) => (
               <SwiperSlide key={data.id}>
                 <Container $Bg={mainData[mainRandom[index]]?.backdrop_path}>
-                <Link to={`detail/${mainData[mainRandom[index]]?.id}`}>
-                  <ConWrap>
-                    <Con>
-                      <Box>
-                        <h1>{mainData[mainRandom[index]]?.title}</h1>
-                        <h3>액션,판타지</h3>
-                      </Box>
-                      <h4>자세히보기</h4>
-                    </Con>
-                  </ConWrap>
+                  <Link to={`detail/${mainData[mainRandom[index]]?.id}`}>
+                    <ConWrap>
+                      <Con>
+                        <Box>
+                          <h1>{mainData[mainRandom[index]]?.title}</h1>
+                          <h3>액션,판타지</h3>
+                        </Box>
+                        <h4>자세히보기</h4>
+                      </Con>
+                    </ConWrap>
                   </Link>
                 </Container>
               </SwiperSlide>

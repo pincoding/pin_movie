@@ -15,6 +15,7 @@ export const Globalstyle = createGlobalStyle`
         letter-spacing: -1px;
         background-color: black;
         color: white;
+        position: relative;
     }
     a{
         text-decoration: none;
