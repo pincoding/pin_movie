@@ -160,12 +160,12 @@ const CloseBtnWarp = styled.div`
   @media screen and (max-width: 480px) {
     display: block;
     width: 100%;
-    height: 0px;
+    height: 50px;
     text-align: right;
 
     svg {
       font-size: 24px;
-      margin: 24px;
+      /* margin: 24px; */
     }
   }
 `;
@@ -178,7 +178,10 @@ const PcIcon = styled.div`
 
     svg {
       font-size: 24px;
-      margin: 24px;
+      margin-left: 20px;
+      margin-top: 20px;
+      position: relative;
+      right: 10px;
     }
   }
 `;
@@ -191,14 +194,14 @@ const IconWarp = styled.div`
 `;
 const TitleWarp = styled.div`
   display: none;
+
   @media screen and (max-width: 480px) {
     display: block;
     width: 100%;
-
     text-align: left;
     h1 {
       font-size: 24px;
-      padding: 20px;
+      padding: 20px 20px 20px 10px;
     }
   }
 `;
@@ -207,6 +210,7 @@ const TitleCon = styled.div`
   display: none;
   @media screen and (max-width: 480px) {
     width: 100%;
+    /* height: 300px; */
     display: grid;
     grid-template-columns: repeat(2, 20fr);
     justify-content: center;
@@ -214,7 +218,7 @@ const TitleCon = styled.div`
     align-content: center;
     p {
       font-size: 16px;
-      padding: 20px;
+      padding: 14px;
     }
   }
 `;
@@ -313,18 +317,19 @@ export const Header = () => {
       </MoHeader>
       <MoWarp $mobtn={displayData}>
         <CloseBtnWarp onClick={moCloseHandler} $mobtn={displayData}>
+          <PcIcon>
+            <IconWarp onClick={moCloseHandler} $mobtn={displayData}>
+              <Link to={"/"}>
+                <IoHomeOutline />
+              </Link>
+              <Link to={"/search"}>
+                <FiSearch />
+              </Link>
+            </IconWarp>
+          </PcIcon>
           <FiDelete />
         </CloseBtnWarp>
-        <PcIcon>
-          <IconWarp onClick={moCloseHandler} $mobtn={displayData}>
-            <Link to={"/"}>
-              <IoHomeOutline />
-            </Link>
-            <Link to={"/search"}>
-              <FiSearch />
-            </Link>
-          </IconWarp>
-        </PcIcon>
+
         <TitleWarp>
           <h1>장르</h1>
           <TitleCon>
