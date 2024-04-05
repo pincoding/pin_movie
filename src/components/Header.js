@@ -312,9 +312,11 @@ export const Header = () => {
         </SubWrap>
       </SHeader>
       {/* 모바일 메뉴 */}
-      <MoHeader onClick={moHandler}>
-        <h1>PinMovie</h1>
-        <Fn>
+      <MoHeader>
+        <Link to={`/`}>
+          <h1>PinMovie</h1>
+        </Link>
+        <Fn onClick={moHandler}>
           <FiMenu />
         </Fn>
       </MoHeader>
