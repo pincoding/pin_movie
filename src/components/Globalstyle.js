@@ -16,6 +16,7 @@ export const Globalstyle = createGlobalStyle`
         background-color: black;
         color: white;
         position: relative;
+        overflow-x: hidden;
     }
     a{
         text-decoration: none;

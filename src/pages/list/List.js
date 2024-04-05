@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { discover } from "../../api";
+import { discover, list02 } from "../../api";
 import { Link, useParams } from "react-router-dom";
 import { imgURL } from "../../imgurl";
 import styled from "styled-components";
@@ -93,32 +93,36 @@ const BgImg = styled.div`
 export const List = () => {
   const { id } = useParams();
   const [disdata, setDisdata] = useState();
-  // const [gendata, setGendata] = useState();
-  // const [iddata, setIdData] = useState(id);
+  const [gendata, setGendata] = useState();
+  const numId =  Number(id);
 
   useEffect(() => {
     (async () => {
       try {
         const { results } = await discover(id);
-        // const { genres } = await list02(id);
 
-        // setGendata(genres);
+        const { genres } = await list02();
+        // console.log(results);
+        setGendata(genres);
         setDisdata(results);
       } catch (error) {
         console.log(error);
       }
     })();
   }, [id]);
+  console.log(gendata);
+  const a = gendata && gendata.filter((data) => console.log(data.id === numId ? data.name : ""))
 
-  // const resultTwo =
-  //   disdata && disdata.filter((data) => data.map((isvalue) => isvalue));
-  // console.log(resultTwo);
+  // console.log(typeof(gendata && gendata[0]?.id ))
+  // console.log(typeof id);
+// console.log(disdata.filter((data) => data.genre_ids 
+// ));
+// console.log(gendata);
 
   // console.log(disdata);
-  // console.log(gendata);
+
   return (
     <Wrap>
-      {/* <h1>{id id}</h1> */}
       <Section>
         {disdata &&
           disdata.map((data) => (
@@ -142,3 +146,4 @@ export const List = () => {
     </Wrap>
   );
 };
+//
