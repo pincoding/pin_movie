@@ -119,7 +119,7 @@ const MoHeader = styled.div`
   @media screen and (max-width: 480px) {
     display: block;
     width: 100%;
-    height: 100%;
+
     padding: 20px 20px;
     position: fixed;
     z-index: 20;
@@ -198,10 +198,13 @@ const TitleWarp = styled.div`
   @media screen and (max-width: 480px) {
     display: block;
     width: 100%;
+    position: absolute;
+    top: 120px;
+    left: 20px;
     text-align: left;
     h1 {
       font-size: 24px;
-      padding: 20px 20px 20px 10px;
+      padding: 0px 20px 20px 10px;
     }
   }
 `;
