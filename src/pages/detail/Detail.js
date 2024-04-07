@@ -1,4 +1,3 @@
-// import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { details, videos } from "../../api";
 import { useParams } from "react-router-dom";
@@ -152,7 +151,6 @@ const PlayWrap = styled.div`
 `;
 
 const IframeWrap = styled.div`
-  /* width: ${(props) => props.$bgSize}; */
   width: 100%;
   height: 100%;
   position: absolute;
@@ -161,32 +159,6 @@ const IframeWrap = styled.div`
   transition: 0.5s;
   opacity: ${(props) => props.$opBg};
 `;
-// const Reviews = styled.div`
-//   display: block;
-//   padding: 8px 30px;
-//   position: absolute;
-//   right: 120px;
-//   background-color: #1c1c1c;
-//   border-radius: 20px;
-//   cursor: pointer;
-//   user-select: none;
-//   h1 {
-//     font-size: 16px;
-//   }
-//   @media screen and (max-width: 1024px) {
-//   }
-//   @media screen and (max-width: 768px) {
-//   }
-//   @media screen and (max-width: 480px) {
-//     padding: 5px 20px;
-//     border-radius: 10px;
-//     right: 0px;
-//     border-radius: 10px;
-//     h1 {
-//       font-size: 15px;
-//     }
-//   }
-// `;
 
 export const Detail = () => {
   const { id } = useParams();
@@ -195,18 +167,15 @@ export const Detail = () => {
   const [opdata, opData] = useState("0");
   const [isPlaying, setisPlaying] = useState();
 
-  // const [widhtData, setwidhtData] = useState("0%");
   const [disData, setDisData] = useState("none");
-  // const [objdata, setobjdata] = useState("none");
-
   const [Loading, setLoading] = useState(true);
+
   useEffect(() => {
     (async () => {
       try {
         const detailId = await details(id);
         const { results } = await videos(id);
-        // const obj = await lists(id);
-        // setobjdata(obj);
+
         setviData(results);
         setData(detailId);
         setLoading(false);
@@ -216,8 +185,6 @@ export const Detail = () => {
       }
     })();
   }, [id]);
-  // console.log(viData[0]?.key);
-  // console.log(data?.backdrop_path);
 
   const videosHandler = () => {
     opData("1");
@@ -231,8 +198,6 @@ export const Detail = () => {
   };
 
   const videoLength = viData && viData.length > 0;
-
-  // console.log(objdata);
 
   return (
     <>
@@ -279,7 +244,6 @@ export const Detail = () => {
               {viData && videoLength ? (
                 <PlayWrap onClick={videosHandler}>
                   <h1>재생</h1>
-                  {console.log(viData.length)}
                 </PlayWrap>
               ) : (
                 ""
@@ -291,8 +255,3 @@ export const Detail = () => {
     </>
   );
 };
-
-// 장르 ,평점
-// 터미널 > cd 경로 바꿈 > git clone (복제해서 가지고온다) -> 깃허브 https 주소 복사 cd 경로 붙여넣기
-// cd 파일명 -> code.
-// ->코드 실행후 터미널 npm i

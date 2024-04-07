@@ -39,8 +39,10 @@ const Con = styled.div`
     border-radius: 20px;
   }
   @media screen and (max-width: 1024px) {
+    height: 200px;
   }
   @media screen and (max-width: 768px) {
+    height: 160px;
   }
   @media screen and (max-width: 480px) {
     height: 160px;
@@ -49,7 +51,7 @@ const Con = styled.div`
 const Box = styled.div`
   width: 100%;
   height: 55px;
-  background-color: #1c1c1c;
+  background-color: rgba(0, 00, 0, 0.7);
   position: absolute;
   bottom: 0;
   color: white;
@@ -57,8 +59,12 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 1024px) {
+    font-size: 16px;
+    height: 50px;
   }
   @media screen and (max-width: 768px) {
+    font-size: 14px;
+    height: 45px;
   }
   @media screen and (max-width: 480px) {
     font-size: 12px;
@@ -70,14 +76,12 @@ const Vote = styled.div``;
 export const HomeSec02 = ({ secData, text }) => {
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
-      //역순
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
   };
 
-  // secData 배열 섞기
   const shuffledSecData = shuffleArray([...secData]);
 
   const params = {
@@ -114,7 +118,6 @@ export const HomeSec02 = ({ secData, text }) => {
                     />
                     <Box>
                       <Vote>자세히보기</Vote>
-                      {/* <Vote>평점 {Math.round(data?.vote_average)}점</Vote> */}
                     </Box>
                   </Con>
                 </Link>

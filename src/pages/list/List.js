@@ -29,7 +29,6 @@ const Wrap = styled.div`
     }
     p {
       font-size: 14px;
-      /* margin-left: 5px; */
     }
     padding: 100px 50px 0px 50px;
   }
@@ -104,7 +103,6 @@ export const List = () => {
         const { results } = await discover(id);
 
         const { genres } = await list02();
-        // console.log(results);
         setGendata(genres);
         setDisdata(results);
       } catch (error) {
@@ -118,17 +116,10 @@ export const List = () => {
   //   gendata.filter((data) => console.log(data.id === numId ? data.name : ""));
   const dataTitle =
     gendata && gendata.filter((data) => (data.id === numId ? data.name : ""));
-  // console.log(typeof(gendata && gendata[0]?.id ))
-  // console.log(typeof id);
-  // console.log(disdata.filter((data) => data.genre_ids
-  // ));
-  // console.log(gendata);
-
-  // console.log(disdata);
 
   return (
     <Wrap>
-      <h1>장르 : {dataTitle[0].name}</h1>
+      <h1>장르 : {dataTitle && dataTitle[0].name}</h1>
       <Section>
         {disdata &&
           disdata.map((data) => (
@@ -152,5 +143,3 @@ export const List = () => {
     </Wrap>
   );
 };
-//
-// 확인용임

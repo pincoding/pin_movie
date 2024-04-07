@@ -31,7 +31,6 @@ const Wrap = styled.div`
     }
     p {
       font-size: 14px;
-      /* margin-left: 5px; */
     }
     padding: 100px 50px 0px 50px;
   }
@@ -142,7 +141,7 @@ export const Search = () => {
       console.log(error?.searchMode);
     }
   };
-  // console.log(resData);
+
   console.log(keyword + `keyword`);
   console.log(errors?.searchMode?.message);
   return (
@@ -191,9 +190,3 @@ export const Search = () => {
     </Wrap>
   );
 };
-//npm i react-hook-form 설치완료
-
-// const a = [1,2,3,4];
-// const b = [5,6,7,8];
-
-// a.concat(b);

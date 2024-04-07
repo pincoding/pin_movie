@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrap = styled.div`
@@ -11,14 +10,11 @@ const Wrap = styled.div`
 export const Form = styled.form`
   width: 450px;
   height: 700px;
-  /* background-color: #1d1d1d; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  a {
-    width: 85%;
-  }
+
   h1 {
     font-size: 40px;
     font-weight: 900;
@@ -37,11 +33,9 @@ export const Form = styled.form`
 `;
 const Button = styled.button`
   all: unset;
-  width: 100%;
+  width: 85%;
   height: 45px;
   text-align: center;
-  /* background-color: #1c1c1c; */
-  /* background-color: #007aff; */
   background-color: ${(props) => (props.$bgcolor ? "#007aff" : "#1c1c1c")};
   margin-top: 70px;
   border-radius: 20px;
@@ -59,11 +53,16 @@ export const Login = () => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm();
-  console.log(isValid);
+  const nav = useNavigate();
+
   const submitHandler = () => {
-    console.log("서브밋 작동합니다.");
+    if (isValid === true) {
+      nav("/", {
+        replace: true,
+      });
+    }
   };
-  console.log(errors?.password?.message);
+
   return (
     <Wrap>
       <Form onSubmit={handleSubmit(submitHandler)}>
@@ -91,11 +90,8 @@ export const Login = () => {
           type="패스워드"
           placeholder="패스워드를 입력하세요."
         ></input>
-        {console.log(errors)}
         <Errors>{errors?.password?.message}</Errors>
-        <Link to={isValid ? "/" : ""}>
-          <Button $bgcolor={isValid}>로그인</Button>
-        </Link>
+        <Button $bgcolor={isValid}>로그인</Button>
       </Form>
     </Wrap>
   );

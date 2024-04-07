@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { nowPlaying, popular, topRated, upcoming } from "../../api";
 
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import "swiper/css/pagination";
 import { MainHome } from "./MainHome";
 import { HomeSec } from "./HomeSec";
 import { HomeSec02 } from "./HomeSec02";

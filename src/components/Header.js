@@ -96,11 +96,13 @@ const SubWrap = styled.div`
   border-bottom-left-radius: 20px;
   border-top-right-radius: 20px;
   @media screen and (max-width: 1024px) {
+    right: 30px;
     h1 {
       font-size: 14px;
     }
   }
   @media screen and (max-width: 768px) {
+    right: 25px;
     h1 {
       font-size: 12px;
     }

@@ -44,12 +44,14 @@ const Con = styled.div`
     border-radius: 20px;
   }
   @media screen and (max-width: 1024px) {
+    height: 360px;
     h1 {
       font-size: 30px;
       font-weight: 500;
     }
   }
   @media screen and (max-width: 768px) {
+    height: 260px;
     h1 {
       font-size: 28px;
       font-weight: 500;
