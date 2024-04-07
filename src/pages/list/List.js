@@ -12,12 +12,14 @@ const Wrap = styled.div`
     font-size: 30px;
     margin-top: 150px;
     color: white;
+    font-weight: 900;
   }
   @media screen and (max-width: 1024px) {
     padding: 100px 50px 0px 50px;
     h1 {
       font-size: 26px;
       margin-top: 100px;
+      color: white;
     }
   }
   @media screen and (max-width: 768px) {
@@ -94,7 +96,7 @@ export const List = () => {
   const { id } = useParams();
   const [disdata, setDisdata] = useState();
   const [gendata, setGendata] = useState();
-  const numId =  Number(id);
+  const numId = Number(id);
 
   useEffect(() => {
     (async () => {
@@ -111,18 +113,22 @@ export const List = () => {
     })();
   }, [id]);
   console.log(gendata);
-  const a = gendata && gendata.filter((data) => console.log(data.id === numId ? data.name : ""))
-
+  // const dataTitle =
+  //   gendata &&
+  //   gendata.filter((data) => console.log(data.id === numId ? data.name : ""));
+  const dataTitle =
+    gendata && gendata.filter((data) => (data.id === numId ? data.name : ""));
   // console.log(typeof(gendata && gendata[0]?.id ))
   // console.log(typeof id);
-// console.log(disdata.filter((data) => data.genre_ids 
-// ));
-// console.log(gendata);
+  // console.log(disdata.filter((data) => data.genre_ids
+  // ));
+  // console.log(gendata);
 
   // console.log(disdata);
 
   return (
     <Wrap>
+      <h1>장르 : {dataTitle[0].name}</h1>
       <Section>
         {disdata &&
           disdata.map((data) => (

@@ -9,16 +9,18 @@ const NotFound = styled.div`
   align-items: center;
   flex-direction: column;
   line-height: 30px;
+  padding-top: 80px;
   h2 {
-    margin-top: 170px;
+    font-size: 60px;
+    font-weight: 700;
+    margin: 60px 0;
   }
   h1 {
-    width: 200px;
+    width: 180px;
     height: 40px;
     border-radius: 14px;
-
     background-color: #1d1d1d;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     margin-top: 50px;
     display: flex;
@@ -27,6 +29,28 @@ const NotFound = styled.div`
   }
   h1:hover {
     background-color: #00a7f6;
+  }
+  h4 {
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 480px) {
+    h1 {
+      width: 160px;
+      font-size: 14px;
+    }
+    h2 {
+      font-size: 50px;
+      font-weight: 500;
+      margin: 60px 0;
+    }
+    h4 {
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+    }
   }
 `;
 
@@ -38,10 +62,10 @@ export const Error404 = () => {
           <title>Error 404</title>
         </Helmet>
         <h2>404</h2>
-        <p>
+        <h4>
           서비스 이용에 불편을 드려 죄송합니다. 해당 페이지를 찾을 수 없습니다.
           홈페이지로 이동해 다양한 콘텐츠를 만나보세요.
-        </p>
+        </h4>
         <Link to={"/"}>
           <h1>홈페이지 돌아가기</h1>
         </Link>

@@ -51,7 +51,7 @@ const Logo = styled.div`
   }
 `;
 const MenuWrap = styled.div`
-  width: 120px;
+  width: 200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,10 +62,17 @@ const MenuWrap = styled.div`
     font-size: 24px;
     cursor: pointer;
   }
+  h4 {
+    font-weight: 700;
+    font-size: 18px;
+  }
   @media screen and (max-width: 1024px) {
+    width: 180px;
     right: 30px;
   }
   @media screen and (max-width: 768px) {
+    right: 24px;
+    width: 160px;
   }
   @media screen and (max-width: 480px) {
     right: 22px;
@@ -175,7 +182,6 @@ const PcIcon = styled.div`
     display: block;
     width: 100%;
     text-align: left;
-
     svg {
       font-size: 24px;
       margin-left: 20px;
@@ -190,6 +196,12 @@ const IconWarp = styled.div`
   @media screen and (max-width: 480px) {
     height: 20px;
     display: block;
+    h4 {
+      position: absolute;
+      top: 24px;
+      left: 120px;
+      font-weight: 500;
+    }
   }
 `;
 const TitleWarp = styled.div`
@@ -281,6 +293,9 @@ export const Header = () => {
           </Link>
         </Logo>
         <MenuWrap>
+          <Link to={"/login"}>
+            <h4>Login</h4>
+          </Link>
           <Link to={"/"}>
             <p>
               <IoHomeOutline />
@@ -329,6 +344,9 @@ export const Header = () => {
               </Link>
               <Link to={"/search"}>
                 <FiSearch />
+              </Link>
+              <Link to={"/login"}>
+                <h4>Login</h4>
               </Link>
             </IconWarp>
           </PcIcon>
