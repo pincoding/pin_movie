@@ -87,7 +87,7 @@ export const Login = () => {
               message: "비밀번호는 8자리 이상",
             },
           })}
-          type="패스워드"
+          type="password"
           placeholder="패스워드를 입력하세요."
         ></input>
         <Errors>{errors?.password?.message}</Errors>
