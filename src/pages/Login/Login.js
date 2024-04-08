@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -65,6 +66,9 @@ export const Login = () => {
 
   return (
     <Wrap>
+      <Helmet>
+        <title>로그인</title>
+      </Helmet>
       <Form onSubmit={handleSubmit(submitHandler)}>
         <h1>PinMovie</h1>
         <input

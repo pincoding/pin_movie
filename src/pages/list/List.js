@@ -3,6 +3,7 @@ import { discover, list02 } from "../../api";
 import { Link, useParams } from "react-router-dom";
 import { imgURL } from "../../imgurl";
 import styled from "styled-components";
+import { Helmet } from "react-helmet-async";
 const Wrap = styled.div`
   padding: 240px 100px 0px 100px;
   p {
@@ -119,6 +120,9 @@ export const List = () => {
 
   return (
     <Wrap>
+      <Helmet>
+        <title>장르</title>
+      </Helmet>
       <h1>장르 : {dataTitle && dataTitle[0].name}</h1>
       <Section>
         {disdata &&
