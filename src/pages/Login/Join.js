@@ -1,66 +1,9 @@
+import { Button, Errors, Form, Wrap } from "./Login";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 
-export const Wrap = styled.div`
-  padding-top: 120px;
-  display: flex;
-  justify-content: center;
-`;
-export const Form = styled.form`
-  width: 450px;
-  height: 700px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  h1 {
-    font-size: 40px;
-    font-weight: 900;
-    padding-bottom: 80px;
-  }
-  input {
-    all: unset;
-    width: 80%;
-    height: 45px;
-    padding-left: 20px;
-    background-color: white;
-    margin-top: 20px;
-    border-radius: 20px;
-    color: black;
-  }
-`;
-export const Button = styled.button`
-  all: unset;
-  width: 85%;
-  height: 45px;
-  text-align: center;
-  background-color: ${(props) => (props.$bgcolor ? "#007aff" : "#1c1c1c")};
-  margin-top: 70px;
-  border-radius: 20px;
-`;
-export const Errors = styled.div`
-  width: 80%;
-  padding-left: 10px;
-  margin-top: 5px;
-  color: #f95a5a;
-`;
-export const Join = styled.div`
-  width: 85%;
-  display: flex;
-
-  padding-top: 10px;
-  p {
-    padding-left: 20px;
-  }
-`;
-const NavJoin = styled.div`
-  padding-left: 20px;
-`;
-////////////////////////////////////////////////////////////////////////
-export const Login = () => {
+export const Join = () => {
   const {
     register,
     handleSubmit,
@@ -76,7 +19,7 @@ export const Login = () => {
     }
   };
   const ClickHandler = () => {
-    nav("/join");
+    nav("/login");
   };
   return (
     <Wrap>
@@ -109,11 +52,22 @@ export const Login = () => {
           placeholder="패스워드를 입력하세요."
         ></input>
         <Errors>{errors?.password?.message}</Errors>
-        <Join>
-          <p>회원가입이 되어있으신가요 ?</p>
-          <NavJoin onClick={ClickHandler}>회원가입</NavJoin>
-        </Join>
-        <Button $bgcolor={isValid}>로그인</Button>
+        <input
+          {...register("password", {
+            required: "이메일을 입력해주세요.",
+            minLength: {
+              value: 12,
+              message: "이메일은 12자리 이상",
+            },
+          })}
+          type="password"
+          placeholder="이메일을 입력해주세요."
+        ></input>
+        <Errors>{errors?.password?.message}</Errors>
+
+        <Button $bgcolor={isValid} onClick={ClickHandler}>
+          회원가입하기
+        </Button>
       </Form>
     </Wrap>
   );

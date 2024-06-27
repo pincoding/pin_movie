@@ -106,6 +106,10 @@ export const List = () => {
         const { genres } = await list02();
         setGendata(genres);
         setDisdata(results);
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
       } catch (error) {
         console.log(error);
       }

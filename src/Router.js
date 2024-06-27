@@ -7,6 +7,7 @@ import { Search } from "./pages/search/Search";
 import { Detail } from "./pages/detail/Detail";
 import { List } from "./pages/list/List";
 import { Login } from "./pages/Login/Login";
+import { Join } from "./pages/Login/Join";
 
 const Router = () => {
   return (
@@ -19,6 +20,7 @@ const Router = () => {
           <Route path="/list/:id" element={<List />} />
           <Route path="/search" element={<Search />} />
           <Route path="/login" element={<Login />} />
+          <Route path="join" element={<Join />} />
           <Route path="/*" element={<Error404 />} />
         </Routes>
         <Footer />

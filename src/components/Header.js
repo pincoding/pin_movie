@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { IoHomeOutline } from "react-icons/io5";
 import { FiMenu } from "react-icons/fi";
@@ -284,6 +284,7 @@ export const Header = () => {
   const moCloseHandler = () => {
     setdisplayData("none");
   };
+  useNavigate(() => {});
 
   // console.log(listdata);
   return (
@@ -316,12 +317,8 @@ export const Header = () => {
         <SubWrap $opdata={displayData}>
           {listdata &&
             listdata.map((data) => (
-              <SubMeun key={data.id}>
-                <Link
-                  to={`/list/${data.id}`}
-                  onClick={MenubarHandler}
-                  $opdata={displayData}
-                >
+              <SubMeun key={data.id} $opdata={displayData}>
+                <Link to={`/list/${data.id}`} onClick={MenubarHandler}>
                   <h1>{data.name}</h1>
                 </Link>
               </SubMeun>
@@ -360,12 +357,8 @@ export const Header = () => {
           <TitleCon>
             {listdata &&
               listdata.map((data) => (
-                <SubMeun key={data.id}>
-                  <Link
-                    to={`/list/${data.id}`}
-                    onClick={MenubarHandler}
-                    $opdata={displayData}
-                  >
+                <SubMeun key={data.id} $opdata={displayData}>
+                  <Link to={`/list/${data.id}`} onClick={MenubarHandler}>
                     <p>{data.name}</p>
                   </Link>
                 </SubMeun>

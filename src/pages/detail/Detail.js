@@ -157,14 +157,14 @@ const IframeWrap = styled.div`
   top: 0;
   left: 0;
   transition: 0.5s;
-  opacity: ${(props) => props.$opBg};
+  opacity: ${(props) => props.$opbg};
 `;
 
 export const Detail = () => {
   const { id } = useParams();
   const [data, setData] = useState();
   const [viData, setviData] = useState();
-  const [opdata, opData] = useState("0");
+  const [opdata, setopData] = useState("0");
   const [isPlaying, setisPlaying] = useState();
 
   const [disData, setDisData] = useState("none");
@@ -191,7 +191,7 @@ export const Detail = () => {
   }, [id]);
 
   const videosHandler = () => {
-    opData("1");
+    setopData("1");
     setDisData("block");
     setisPlaying(true);
     window.scrollTo({
@@ -200,7 +200,7 @@ export const Detail = () => {
     });
   };
   const delBtnHandler = () => {
-    opData("0");
+    setopData("0");
     setDisData("none");
     setisPlaying(false);
   };
@@ -223,7 +223,7 @@ export const Detail = () => {
                 alt={data?.title}
               />
 
-              <IframeWrap $opBg={opdata}>
+              <IframeWrap $opbg={opdata}>
                 {viData && (
                   <ReactPlayer
                     width="100%"
@@ -237,7 +237,7 @@ export const Detail = () => {
               </IframeWrap>
             </DetSec01>
             <DetSec02>
-              <ButtonBox onClick={delBtnHandler} $btn={disData} $opBg={opdata}>
+              <ButtonBox onClick={delBtnHandler} $btn={disData} $opbg={opdata}>
                 <h1>취소</h1>
               </ButtonBox>
               <ConWrap className="conWarp01">
